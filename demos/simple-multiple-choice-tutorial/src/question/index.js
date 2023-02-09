@@ -1,4 +1,5 @@
 import { PREFIX } from './constants';
+import { renderUI } from './renderUI.js';
 
 export default class Question {
     constructor(init, lrnUtils) {
@@ -21,14 +22,12 @@ export default class Question {
 
     render() {
         const { el, init, lrnUtils } = this;
-        const { question, response } = init;
+        const { question, response, state } = init;
 
         // TODO: Requires implementation
         el.innerHTML = `
             <div class="${PREFIX} lrn-response-validation-wrapper">
-                <div class="lrn_response_input">
-                    Requires implementation - YOUR CONTENT GOES IN HERE
-                </div>            
+                <div class="lrn_response_input"></div>            
                 <div class="${PREFIX}-checkAnswer-wrapper"></div>
                 <div class="${PREFIX}-suggestedAnswers-wrapper"></div>
             </div>
@@ -42,7 +41,7 @@ export default class Question {
         ]).then(([suggestedAnswersList]) => {
             this.suggestedAnswersList = suggestedAnswersList;
 
-            // TODO - Requires implementation
+            renderUI(el, question, response, state)
         });
     }
 
