@@ -11,6 +11,15 @@ $request = '{
           "response_id": "' . $responseId . '",
           "type": "custom",
           "stimulus": "Which city is located in the US state of Texas?",
+          "valid_response" : {
+            "value" : "1"
+        },
+        "choices" : [
+          {"label": "Denver", "value": "0"},
+          {"label": "Houston", "value": "1"},
+          {"label": "Chicago", "value": "2"},
+          {"label": "New York", "value": "3"}
+        ],
           "js": {
             "question": "/dist/question.js",
             "scorer": "/dist/scorer.js"
