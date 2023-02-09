@@ -10,7 +10,7 @@ $request = '{
         {
           "response_id": "' . $responseId . '",
           "type": "custom",
-          "stimulus": "Stimulus of the custom question",
+          "stimulus": "Which city is located in the US state of Texas?",
           "js": {
             "question": "/dist/question.js",
             "scorer": "/dist/scorer.js"
