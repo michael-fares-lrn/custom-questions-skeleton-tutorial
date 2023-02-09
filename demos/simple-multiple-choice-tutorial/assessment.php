@@ -20,6 +20,7 @@ $request = '{
           {"label": "Chicago", "value": "2"},
           {"label": "New York", "value": "3"}
         ],
+         "score" : 1,
           "js": {
             "question": "/dist/question.js",
             "scorer": "/dist/scorer.js"
