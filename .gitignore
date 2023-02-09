@@ -1,0 +1,9 @@
+.sonar
+.DS_Store
+.project
+*.esproj
+*.sublime-workspace
+*.sublime-project
+.idea
+node_modules
+simple-multiple-choice-complete
