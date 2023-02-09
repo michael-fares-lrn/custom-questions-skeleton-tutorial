@@ -74,10 +74,60 @@ export default class Question {
     }
 
     handleEvents() {
-        const { events } = this;
+        // we are going to need all of these properties eventually, so let's desctructure them now
+        const { events, el, init } = this;
+        const { question } = init;
+     
+        // first we will access the runtime facade of our custom question
+        // this is important, because we are going to call the getResponse() method on this facade
+        // after saving our responses to verify that Questions API has picked them up and saved them.
+        const facade = init.getFacade();
 
-        // TODO: Requires implementation - Make sure you trigger 'changed' event after users changes their responses
-        // events.trigger('changed', responses);
+        // get an HTML collection of the choices in our question
+        const choices = el.querySelectorAll(`input[type="radio"]`);
+
+        // for each choice in the collection, add a click event listner to detect a change in the choice the user clicks
+        choices.forEach((choice) => {
+            choice.addEventListener("click", (event) => {
+                // whenever the user clicks a choice radio button input, 
+                // we will set the "value" of the questions response
+                // to the value of the clicked input (event.target.value)
+                // this will allow for easy comparision between valid_response.value and response.value when we 
+                // work on scoring the question later
+                let responseObject = { value: event.target.value };
+                /**
+                 * IMPORTANT: we now must MAKE SURE TO TRIGGER a "changed" event 
+                 * in order to tell the Questions API register whenever there is a change to the repsonse object
+                 * above. This tells Questions API that the user has changed their response and to keep track of the current response
+                 */
+                events.trigger("changed", responseObject);
+                
+                // Finally, lets call getResponse() on the runtime facade of our question, to make sure we see an output
+                console.log("You clicked a choice! The current response is: ", facade.getResponse());
+                // if questions API has sucessfully picked up the learners changed repsonse
+                // then when clicking on "Choice A - Denver" in our question, 
+                // we should see the following logged to the console:
+                /************************************************************
+             
+                {
+                    "value": {
+                        "value": "0"
+                    },
+                    "type": "object",
+                    "apiVersion": "v2.194.3-rc.7",
+                    "revision": 1
+                }
+                 *************************************************************/
+                /**
+                 * NOTE that the TOP level "value" object is a default object applied by the Questions API getResponse() method
+                 * to responses that are saved via triggering the "changed" event above.
+                 * The NESTED value object here (value.value) is the value of the choice the learner picked.
+                 *  we will work directly with this nested value property above and compare it to the valid_response object on
+                 * our custom question when implementing the scoring logic in src/scorer/index.js
+                 */
+
+            });
+        });
 
 
         // "validate" event can be triggered when Check Answer button is clicked or when public method .validate() is called
