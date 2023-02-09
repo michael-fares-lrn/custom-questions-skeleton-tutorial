@@ -27,5 +27,8 @@
     "debug-server-scorer": "node ./debugServerScorer.js",
     "unit-tests": "jest",
     "unit-tests-watch": "jest --watch"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
   }
 }
