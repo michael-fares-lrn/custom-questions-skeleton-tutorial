@@ -91,6 +91,8 @@ export default class Question {
             choice.addEventListener("click", (event) => {
                 el.querySelector(".lrn_response_input").classList.remove("lrn_correct");
                 el.querySelector(".lrn_response_input").classList.remove("lrn_incorrect");
+                this.suggestedAnswersList.reset()
+
                 // whenever the user clicks a choice radio button input, 
                 // we will set the "value" of the questions response
                 // to the value of the clicked input (event.target.value)
@@ -155,6 +157,16 @@ export default class Question {
                  * x (cross) you are used to on regular Learnosity quesiton types
                  */
                 el.querySelector(".lrn_response_input").classList.add("lrn_incorrect");
+            }
+            // let's first do some destructuring so we can 
+            const { choices, valid_response } = question
+            // compare the picked choice value to the valid response value more easily 
+            const correctAnswer = choices.find(choice => choice.value === valid_response.value)
+            /*** we will now show the correct answer if the users answer was incorrect */
+            if (!answerIsCorrect && options.showCorrectAnswers) {
+                    // show the label text string (correctAnswer.label) of the choice whose choice number string (value) 
+                    // matches the choice number string defined in valid_response.value
+                    this.suggestedAnswersList.setAnswers(correctAnswer.label);
             }
         });
     }
