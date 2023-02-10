@@ -89,6 +89,8 @@ export default class Question {
         // for each choice in the collection, add a click event listner to detect a change in the choice the user clicks
         choices.forEach((choice) => {
             choice.addEventListener("click", (event) => {
+                el.querySelector(".lrn_response_input").classList.remove("lrn_correct");
+                el.querySelector(".lrn_response_input").classList.remove("lrn_incorrect");
                 // whenever the user clicks a choice radio button input, 
                 // we will set the "value" of the questions response
                 // to the value of the clicked input (event.target.value)
@@ -136,7 +138,24 @@ export default class Question {
         // The value showCorrectAnswers by default is the value of showCorrectAnswers inside initOptions object that is used
         // to initialize question app or the value of the options that is passed into public method validate (like question.validate({showCorrectAnswers: false}))
         events.on('validate', options => {
-            // TODO: Requires implementation
+            // see whether the answer was correct or not by accessing the boolean value returned by the isValid() method
+            // on the question facade
+            const answerIsCorrect = facade.isValid();
+            /**
+             * update the UI based on the result
+             * IMPORTANT: In both cases we need to target the element with the classname lrn_response_input
+             */
+            if (answerIsCorrect) {
+                /** if the answer is correct we will add the Learnosity utility class lrn_correct, which will automatically show the Learnosity
+                 * checkmark (tick) you are used to on regular Learnosity quesiton types
+                 */
+                el.querySelector(".lrn_response_input").classList.add("lrn_correct");
+            } else {
+                /** if the answer is incorrect we will add the Learnosity utility class lrn_incorrect, which will automatically show the Learnosity
+                 * x (cross) you are used to on regular Learnosity quesiton types
+                 */
+                el.querySelector(".lrn_response_input").classList.add("lrn_incorrect");
+            }
         });
     }
 }
