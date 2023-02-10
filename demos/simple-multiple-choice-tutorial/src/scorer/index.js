@@ -9,9 +9,16 @@ export default class Scorer {
      * (Required)
      * @returns {boolean}
      */
-    isValid() {
-        // TODO: Requires implementation
-
+     isValid() {
+        // destructing for easy comparision of questions correct answer
+        // to the learners provided response
+        const { question, response } = this
+          // if a response exists, and its value is equal to the value of the 
+          // question's correct answer, then we will return true
+           if(response && question.valid_response.value === response.value) {
+            return true
+        }
+        // otherwise, we will return false
         return false;
     }
 
@@ -32,8 +39,14 @@ export default class Scorer {
      * Returns the score of the stored response
      * @returns {number|null}
      */
-    score() {
-        // TODO: Requires implementation
+     score() {
+        // if the answer is correct (isValid() === true) 
+        // we will return the value of maxScore() which itself returns the "score" value
+        // we indicated on our question JSON (1 in this case)
+        if(this.isValid()) {
+            return this.maxScore()
+        }
+        // otherwise we will return a score of 0
         return 0;
     }
 
@@ -42,8 +55,9 @@ export default class Scorer {
      * @returns {number}
      */
     maxScore() {
-        // TODO: Requires implementation
-        return 0;
+        // return the "score" value
+        // we indicated on our question JSON (1 in this case)
+          return this.question.score
     }
 
     /**
