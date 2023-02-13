@@ -77,14 +77,24 @@ export default class Question {
 
         };
         facade.resetResponse = () => {
-            // TODO: Requires implementation, you could use the following steps
+            // use the getResponse() method to read the stored response value (value of the picked choice)
+            const existingResponseBeforeReset = facade.getResponse().value
 
             // trigger a 'resetResponse' event to reset the value of response
-            // this.events.trigger('resetResponse');
+            this.events.trigger('resetResponse');
 
             // reset other states if you need
+            // here, if a response existed before resetResponse() was called
+            // then we reset the radio button matching that response by setting its checked property to false 
+            if(existingResponseBeforeReset) {
+                el.querySelector(`input[value="${existingResponseBeforeReset.value}"]`).checked = false
+            }
 
             // re-render the component, manage the 'reset' state by yourself
+            /**
+             * NOTE: for this simple example and custom question usecase, there is no need to re-render the component.
+            */
+            
         };
     }
 
