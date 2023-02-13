@@ -49,4 +49,16 @@ export const renderUI = (el, question, response, state) => {
             form.appendChild(containerDiv);
             responseArea.appendChild(form);
         });
+    /**
+     * handle updating our UI with the saved student response in review and resume states, if a saved response exists
+     */
+    if ((state === "resume" || state === "review") && response) {
+        /** check if the radio button that matches the learners saved response has been rendered,
+         * and if so, update the UI to show it as selected by setting its "checked" property to true
+         */
+        const inputToUpdate = el.querySelector(`input[value="${response.value}"]`);
+        if (inputToUpdate) {
+            inputToUpdate.checked = true;
+        }
+    }
 };
