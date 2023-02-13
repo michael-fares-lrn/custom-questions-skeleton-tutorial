@@ -51,15 +51,30 @@ export default class Question {
      * Example: questionsApp.question('my-custom-question-response-id').myNewMethod();
      */
     registerPublicMethods() {
-        const { init } = this;
+        const { init, el } = this;
         // Attach the methods you want on this object
         const facade = init.getFacade();
 
         facade.disable = () => {
-            // TODO: Requires implementation
+            // mark that the current question instance (this) is disabled
+            this.disabled = true;
+            // give each radio button input in our multiple choice list an
+            // html attribute of "disabled"
+            el.querySelectorAll('input').forEach(input => input.disabled = true);
+
+            // add a classname of disabled to our response area and the choices therein
+            // to allow for further CSS styling for when our question is disabled
+            /** NOTE: the CSS declaration we will use for the disabled class will be covered in a subsequesnt step on styling our custom question */
+            el.querySelector('.lrn_response_input').classList.add('disabled');
+            el.querySelectorAll('label').forEach(label => label.classList.add('disabled'));         
         };
         facade.enable = () => {
-            // TODO: Requires implementation
+            // Undo everying specified in facade.disable() above.
+            this.disabled = false;
+            el.querySelectorAll('input').forEach(input => input.disabled = false);
+            el.querySelector('.lrn_response_input').classList.remove('disabled');
+            el.querySelectorAll('label').forEach(label => label.classList.remove('disabled'));
+
         };
         facade.resetResponse = () => {
             // TODO: Requires implementation, you could use the following steps
