@@ -16,8 +16,8 @@ $request = '
           "question_type_templates": {
             "custom_question_skeleton": [
               {
-                "name": "Custom Question - Skeleton",
-                "description": "A clean custom question - Skeleton",
+                "name": "Custom Simple Multiple Choice Question - AUTHORING EXAMPLE",
+                "description": "Demonstrates an example of setting up authoring for a custom question type",
                 "group_reference": "company_x_custom_questions",
                 "defaults": {
                   "type": "custom",
