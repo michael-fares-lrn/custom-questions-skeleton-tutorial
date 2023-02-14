@@ -21,7 +21,17 @@ $request = '
                 "group_reference": "company_x_custom_questions",
                 "defaults": {
                   "type": "custom",
-                  "stimulus": "This is stimulus",
+                  "stimulus": "[Your question here]",
+                  "valid_response" : {
+                      "value" : ""
+                  },
+                  "choices" : [
+                      {"label": "CHOICE A", "value": "0"},
+                      {"label": "CHOICE B", "value": "1"},
+                      {"label": "CHOICE C", "value": "2"},
+                      {"label": "CHOICE D", "value": "3"}
+                  ],
+                  "score" : 1,
                   "js": {
                     "question": "/dist/question.js",
                     "scorer": "/dist/scorer.js"
