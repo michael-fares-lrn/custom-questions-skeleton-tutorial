@@ -63,6 +63,33 @@ $request = '
                       "type": "boolean",
                       "required": false,
                       "default": false
+                    },
+                    "choices": {
+                      "name": "Define the choices here",
+                      "description": "",
+                      "type": "array",
+                      "required": true,
+                      "items": {
+                        "type": "object",
+                        "attributes": {
+                          "label": {
+                            "type": "editor"
+                          }
+                        }
+                      }
+                    },
+                    "valid_response" : {
+                      "type" : "question",
+                      "name" : "Set the correct answer",
+                      "description" : "Correct answer for the question",
+                      "required": true,
+                      "white_list" : ["value", "choices"]
+                    },
+                    "score" : {
+                      "type" : "number",
+                      "name": "Score",
+                      "description": "Score for a correct answer.",
+                      "required": true
                     }
                 }
               }
