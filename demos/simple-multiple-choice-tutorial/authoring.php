@@ -7,12 +7,18 @@ $request = '
     "dependencies": {
       "question_editor_api": {
         "init_options": {
+          "question_type_groups": [
+            {
+                "name": "Company X Custom Questions",
+                "reference": "company_x_custom_questions"
+            }
+          ],
           "question_type_templates": {
             "custom_question_skeleton": [
               {
                 "name": "Custom Question - Skeleton",
                 "description": "A clean custom question - Skeleton",
-                "group_reference": "other",
+                "group_reference": "company_x_custom_questions",
                 "defaults": {
                   "type": "custom",
                   "stimulus": "This is stimulus",
