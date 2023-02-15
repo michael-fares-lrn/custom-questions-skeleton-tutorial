@@ -34,10 +34,7 @@ export const renderUI = (el, question, response, state) => {
     /**
      * handle updating our UI with the saved student response in review and resume states, if a saved response exists
      */
-    if ((state === "resume" || state === "review") && response) {
-
-   
-        
+    if ((state === "resume" || state === "review") && response)      
       el.querySelector(`input[value="${response.value}"]`).checked = true;
           /**
         * EXAMPLE JS ERROR THROWN IN authoring.php but not assessment.php:
