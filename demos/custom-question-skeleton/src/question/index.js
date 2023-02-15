@@ -77,8 +77,44 @@ export default class Question {
     handleEvents() {
         const { events, el, init } = this;
 
-        // TODO: Requires implementation - Make sure you trigger 'changed' event after users changes their responses
-        // events.trigger('changed', responses);
+
+        let learnerResponse;
+        /**
+         * the above learnerReponse variable has been included for you as a placeholder varible 
+         * to help in saving the learner response to your custom question.
+         * 
+         * as the learner changes their response to the question, make sure that you update this variable accordingly  
+         * 
+         * When updated, this variable should be either:
+         * 
+         * a STRING, if your question takes in a single response like the string value of a text input
+         *     - e.g. learnerResponse = el.querySelector('input').value
+         * 
+         * Or and OBJECT, if your question involves multiple response points. Say for simple example you 
+         * are creating a question that asks a student to determine the x and y coordinates of a point on a graph.
+         * Then learnerResponse might look something like this:
+         *    -e.g. learnerResponse =  {
+         *                              xCoordinate: someValue,
+         *                              yCoordinate: someOtherValue
+         *                         }
+         * 
+         *
+         */
+
+
+        /** IMPORTANT: you MUST trigger a changed event on the learnerResponse to make sure that Questions API will
+         * save the learners response each time it changes. The following code does so automatically for you.
+         */
+        events.trigger('changed', learnerResponse);
+
+        /**
+         * the following code logs the value of a saved response for you automatically 
+         * by calling the .getResponse() public method on your custom question
+         * if this method returns the learnerResponse you have saved above, then you know that 
+         * your saving the response has been successful
+         * if this method returns 'undefined' then the learnerResponse did not get saved and you should check your code again
+         */
+        console.log("the current saved response is", init.getFacade().getResponse().value) // should NOT return undefined if the learnerResponse was saved sucessfully
 
 
         // The "validate" event below is triggered when Check Answer button is clicked or when public method .validate() is called
