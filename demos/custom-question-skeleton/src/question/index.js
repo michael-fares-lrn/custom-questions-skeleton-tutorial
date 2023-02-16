@@ -1,4 +1,5 @@
 import { PREFIX } from './constants';
+import { renderUI } from './renderUI'; 
 
 export default class Question {
     constructor(init, lrnUtils) {
@@ -21,13 +22,20 @@ export default class Question {
 
     render() {
         const { el, init, lrnUtils } = this;
-        const { question, response } = init;
+        const { question, response, state } = init;
 
-        // TODO: Requires implementation
+        // IMPORTANT: the element <div class="lrn_response_input"></div> below is the parent elememt hook
+        // for all of your questions content to be rendered into
+        // it is managed for you by the renderUI function called on line 50 below
+
+        // TODO: in the file renderUI.js, fill out the body of this function with the custom logic 
+        // to render your question's components.
         el.innerHTML = `
             <div class="${PREFIX} lrn-response-validation-wrapper">
                 <div class="lrn_response_input">
-                    Requires implementation - YOUR CONTENT GOES IN HERE
+                    AFTER YOU FILL OUT THE renderUI FUNCTION in <code>./src/question/renderUI.js</code>
+                    YOUR QUESTION'S RESPONSE AREA UI SHOULD SHOW UP HERE 
+                    - YOU CAN DELETE THIS PLACEHODER LINE AFTERWARDS
                 </div>            
                 <div class="${PREFIX}-checkAnswer-wrapper"></div>
                 <div class="${PREFIX}-suggestedAnswers-wrapper"></div>
@@ -42,7 +50,7 @@ export default class Question {
         ]).then(([suggestedAnswersList]) => {
             this.suggestedAnswersList = suggestedAnswersList;
 
-            // TODO - Requires implementation
+            renderUI(el, question, response, state)
         });
     }
 
