@@ -65,10 +65,30 @@ export default class Question {
         const facade = init.getFacade();
 
         facade.disable = () => {
-            // TODO: Requires implementation
+            this.disabled = true;
+
+            this.el.querySelector('.lrn_response_input').classList.add('disabled')
+            // the above line disables the cursor in the response area using CSS
+
+            // TODO: If there are other aspects of your question UI that should be disabled in when in "review" state, 
+            // then disable them here
+            // example:
+            // this.el.querySelector('input').disabled = true
         };
         facade.enable = () => {
-            // TODO: Requires implementation
+            this.disabled = false;
+
+            // NOTE: you only need to complete this enable method if you want to programatically call disable() on your custom quesiton
+            // in a state other than review, and then re-enable it for the learner to interact with again after a period of time. 
+            // (for example, temporarily disabling the question in intial state to disallow learner interaction with it until the learner reads the instuctions)
+
+            this.el.querySelector('.lrn_response_input').classList.remove('disabled')
+            // the above line re-enables a previously disabled cursor in the response area using CSS. Uncomment them only if you need to implement the enable method
+            // TODO: If there are other aspects of your question UI that were disabled by disable() above, and wish to re-enable them, 
+            // then re-enable them here
+            // example:
+            // this.el.querySelector('input').disabled = false
+   
         };
         facade.resetResponse = () => {
             // TODO: Requires implementation, you could use the following steps
