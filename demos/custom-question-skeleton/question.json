@@ -1,0 +1,14 @@
+{
+    "type": "custom",
+    "stimulus": "Stimulus of the custom question here.",
+    "valid_response": {},
+    "yourCustomProperty": "yourCustomValue",
+    "yourCustomProperty2": "yourCustomValue2",
+    "yourCustomProperty3": "yourCustomValue3",
+    "js": {
+        "question": "/dist/question.js",
+        "scorer": "/dist/scorer.js"
+    },
+    "css": "/dist/question.css",
+    "instant_feedback": true
+}

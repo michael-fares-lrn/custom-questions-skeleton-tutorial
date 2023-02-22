@@ -1,5 +1,6 @@
 <?php
 include_once '../config.php';
+$defaultQuestionJson = file_get_contents('./question.json');
 
 $request = '
 {
@@ -13,16 +14,7 @@ $request = '
                 "name": "Custom Question - Skeleton",
                 "description": "A clean custom question - Skeleton",
                 "group_reference": "other",
-                "defaults": {
-                  "type": "custom",
-                  "stimulus": "This is stimulus",
-                  "js": {
-                    "question": "/dist/question.js",
-                    "scorer": "/dist/scorer.js"
-                  },
-                  "css": "/dist/question.css",
-                  "instant_feedback": true
-                }
+                "defaults": '.$defaultQuestionJson.'
               }
             ]
           },
