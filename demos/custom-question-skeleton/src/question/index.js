@@ -72,10 +72,18 @@ export default class Question {
 
             // re-render the component, manage the 'reset' state by yourself
         };
+        facade.showValidationUI = () => {
+            // placeholder comment TODO: requires implementation
+            
+        };
+        facade.resetValidationUI = () => {
+            // placeholder comment TODO: requires implementation
+        };
     }
 
     handleEvents() {
-        const { events } = this;
+        const { events, init } = this;
+        const facade = init.getFacade()
 
         // TODO: Requires implementation - Make sure you trigger 'changed' event after users changes their responses
         // events.trigger('changed', responses);
@@ -87,7 +95,31 @@ export default class Question {
         // The value showCorrectAnswers by default is the value of showCorrectAnswers inside initOptions object that is used
         // to initialize question app or the value of the options that is passed into public method validate (like question.validate({showCorrectAnswers: false}))
         events.on('validate', options => {
-            // TODO: Requires implementation
+             // OPTIONAL Step 1: if you want to show changes to the UI for a correct or incorrect answer when the student presses check answer
+            // do so by implementing facade.showValidationUI and calling it here.
+            // this implementation uses the familiar Learnosity checkmark or x for a correct or incorrect answer
+            facade.showValidationUI()
+
+
+            // OPTIONAL Step 2: If you want to display the correct answer to the student when they press the check answer button,
+            // then you should leverage the suggestedAnswersList.setAnswers() method.
+            
+            if (!facade.isValid() && options.showCorrectAnswers) {
+                // pass a string of there is a single correct answer
+                //OR:
+                /**
+                * For custom questions with multiple correct answers, you can also pass an array of objects into this method, each object containing an index key of type number for the 0-based index of the correct answer, and a label key of type string for the text of the correct answer. So, for a hypothetical question with 3 correct answers, you might pass the following array into setAnswers():
+
+                    [
+                    {index: 0, label: "correct answer 1"},
+                    {index: 1, label: "correct answer 2"},
+                    {index: 2, label: "correct answer 3"}
+                    ]
+
+                 */
+                this.suggestedAnswersList.setAnswers();
+            }
+
         });
     }
 }
