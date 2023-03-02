@@ -96,6 +96,40 @@ export default class Question {
             */
             
         };
+        facade.showValidationUI = () => {
+            // placeholder comment TODO: requires implementation
+            
+            // this implementation demonstratues using the familiar Learnosity check and x for the validation UI 
+            // see whether the answer was correct or not by accessing the boolean value returned by the isValid() method
+            // on the question facade
+            const answerIsCorrect = facade.isValid();
+            /**
+             * update the UI based on the result
+             * IMPORTANT: In both cases we need to target the element with the classname lrn_response_input
+             */
+            if (answerIsCorrect) {
+                /** if the answer is correct we will add the Learnosity utility class lrn_correct, which will automatically show the Learnosity
+                 * checkmark (tick) you are used to on regular Learnosity quesiton types
+                 */
+                el.querySelector(".lrn_response_input").classList.add("lrn_correct");
+            } else {
+                /** if the answer is incorrect we will add the Learnosity utility class lrn_incorrect, which will automatically show the Learnosity
+                 * x (cross) you are used to on regular Learnosity quesiton types
+                 */
+                el.querySelector(".lrn_response_input").classList.add("lrn_incorrect");
+            }
+        };
+        facade.resetValidationUI = () => {
+            // placeholder comment TODO: requires implementation
+
+            // we will remove the Learnosity checkmark or x previously showing
+            el.querySelector(".lrn_response_input").classList.remove("lrn_correct");
+            el.querySelector(".lrn_response_input").classList.remove("lrn_incorrect");
+            
+            // if we chose to also display the correct answer, we will now remove the display of the correct answer as well by 
+            //leveraging the suggestedAnswersLists.resert() method.
+            this.suggestedAnswersList.reset()
+        };
     }
 
     handleEvents() {
@@ -114,9 +148,8 @@ export default class Question {
         // for each choice in the collection, add a click event listner to detect a change in the choice the user clicks
         choices.forEach((choice) => {
             choice.addEventListener("click", (event) => {
-                el.querySelector(".lrn_response_input").classList.remove("lrn_correct");
-                el.querySelector(".lrn_response_input").classList.remove("lrn_incorrect");
-                this.suggestedAnswersList.reset()
+               // if the validation UI is showing because the student has previously pressed check answer, then we will reset it:
+               facade.resetValidationUI()
 
                 // whenever the user clicks a choice radio button input, 
                 // we will set the "value" of the questions response
@@ -165,30 +198,22 @@ export default class Question {
         // The value showCorrectAnswers by default is the value of showCorrectAnswers inside initOptions object that is used
         // to initialize question app or the value of the options that is passed into public method validate (like question.validate({showCorrectAnswers: false}))
         events.on('validate', options => {
-            // see whether the answer was correct or not by accessing the boolean value returned by the isValid() method
-            // on the question facade
-            const answerIsCorrect = facade.isValid();
-            /**
-             * update the UI based on the result
-             * IMPORTANT: In both cases we need to target the element with the classname lrn_response_input
-             */
-            if (answerIsCorrect) {
-                /** if the answer is correct we will add the Learnosity utility class lrn_correct, which will automatically show the Learnosity
-                 * checkmark (tick) you are used to on regular Learnosity quesiton types
-                 */
-                el.querySelector(".lrn_response_input").classList.add("lrn_correct");
-            } else {
-                /** if the answer is incorrect we will add the Learnosity utility class lrn_incorrect, which will automatically show the Learnosity
-                 * x (cross) you are used to on regular Learnosity quesiton types
-                 */
-                el.querySelector(".lrn_response_input").classList.add("lrn_incorrect");
-            }
+            // OPTIONAL Step 1: if you want to show changes to the UI for a correct or incorrect answer when the student presses check answer
+            // do so by implementing facade.showValidationUI and calling it here.
+            // this implementation uses the familiar Learnosity checkmark or x for a correct or incorrect answer
+            facade.showValidationUI()
+
+
+            // OPTIONAL Step 2: If you want to display the correct answer to the student when they press the check answer button,
+            // then you should leverage the suggestedAnswersList.setAnswers() method.
+            // the following is an example implementation:
+
             // let's first do some destructuring so we can 
             const { choices, valid_response } = question
             // compare the picked choice value to the valid response value more easily 
             const correctAnswer = choices.find(choice => choice.value === valid_response.value)
             /*** we will now show the correct answer if the users answer was incorrect */
-            if (!answerIsCorrect && options.showCorrectAnswers) {
+            if (!facade.isValid() && options.showCorrectAnswers) {
                     // show the label text string (correctAnswer.label) of the choice whose choice number string (value) 
                     // matches the choice number string defined in valid_response.value
                     this.suggestedAnswersList.setAnswers(correctAnswer.label);
