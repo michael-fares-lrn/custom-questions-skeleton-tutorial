@@ -86,7 +86,35 @@ export default class Question {
         const facade = init.getFacade()
 
         // TODO: Requires implementation - Make sure you trigger 'changed' event after users changes their responses
-        // events.trigger('changed', responses);
+
+        // when you consider that the response to your question has been changed, (such when a user clicks the choice of a multiple choice question or enters text into a free response question),
+        // then you must trigger the changed event to inform questions API that the question has been attemted.
+
+        /**
+         * @respones - this variable can be any data type you would like it to be depending on the format of your responses. For instance, it might be a string for the value of a simple text input
+         * Or it for a quesiton asking a student plot coorinates on a graph, it can be an object containing the x and y coordinates, e.g.
+         * {
+         *   x: 123,
+         *   y: 408
+         * }
+         */
+
+
+        /** EXAMPLE 
+         * 
+         * document.getElementById('my-input').addEventListener('click', (event) => {
+         *   
+         * let responses = event.target.value
+         *   
+         *   // trigger the changed event inside of a DOM event in which the user has changed their response to your question
+         *   
+         *   events.trigger('changed', responses);
+         * 
+         * })
+         * 
+         */
+
+             
 
 
         // "validate" event can be triggered when Check Answer button is clicked or when public method .validate() is called

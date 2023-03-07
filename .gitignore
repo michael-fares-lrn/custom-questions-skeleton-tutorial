@@ -6,4 +6,4 @@
 *.sublime-project
 .idea
 node_modules
-full
+rubric
