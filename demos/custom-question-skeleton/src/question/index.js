@@ -11,6 +11,8 @@ export default class Question {
             this.registerPublicMethods();
             this.handleEvents();
 
+            // PLACEHOLDER: Should we say something about updating the UI with saved responses in resume and review states here?
+
             if (init.state === 'review') {
                 init.getFacade().disable();
             }
@@ -74,7 +76,6 @@ export default class Question {
         };
         facade.showValidationUI = () => {
             // placeholder comment TODO: requires implementation
-            
         };
         facade.resetValidationUI = () => {
             // placeholder comment TODO: requires implementation
@@ -85,30 +86,48 @@ export default class Question {
         const { events, init } = this;
         const facade = init.getFacade()
 
-        // TODO: Requires implementation - Make sure you trigger 'changed' event after users changes their responses
-
-        // when you consider that the response to your question has been changed, (such when a user clicks the choice of a multiple choice question or enters text into a free response question),
-        // then you must trigger the changed event to inform questions API that the question has been attemted.
+        // TODO: Requires implementation - Make sure you trigger 'changed' event after the user changes their responses to your custom quesiton:
 
         /**
-         * @respones - this variable can be any data type you would like it to be depending on the format of your responses. For instance, it might be a string for the value of a simple text input
-         * Or it for a quesiton asking a student plot coorinates on a graph, it can be an object containing the x and y coordinates, e.g.
-         * {
-         *   x: 123,
-         *   y: 408
-         * }
+         * 
+         * 
+         * when you consider that the response to your question has been changed, 
+         * (such when a user clicks the choice of a multiple choice question or enters text into a free response question),
+         * then you must trigger the changed event to inform questions API that the question has been attempted.
+         * To do this, you must call events.trigger('changed', responses)  inside of a DOM event listener in which the user has changed their response to your question
+         * (such as a 'click' event listener for a multiple choice question, or an input 'change' event listener for a free response text question)
+
+         */
+
+        /**
+         * @respones - this variable can be any data type you would like it to be depending on the format of your responses. 
+         * For instance, it might be a string for the value of a simple text input
+         * Or for a quesiton asking a student plot coorinates on a graph, it might be an object containing the x and y coordinates, e.g.
+         *     {
+         *       x: 123,
+         *       y: 408
+         *     }
          */
 
 
-        /** EXAMPLE 
+        /** EXAMPLE implementation
          * 
          * document.getElementById('my-input').addEventListener('click', (event) => {
          *   
-         * let responses = event.target.value
+         *   // STEP 1: when the user clicks on your custom question's input, save its current value as the value of responses
+         *  let responses = event.target.value
          *   
-         *   // trigger the changed event inside of a DOM event in which the user has changed their response to your question
+         *  // STEP 2: 
+         *  // now notfy questions API that the user has changed their response
          *   
          *   events.trigger('changed', responses);
+         * 
+         * // STEP 3 - OPTIONAL
+         * // If you chosen to implement facade.showValidationUI() to display visiual feedback for a correct / incorrect answer
+         * when the user presses "Check Answer" for the current response:
+         *  then make sure you call facade.resetValidationUI() here:
+         * 
+         * // facade.clearValidationUI()
          * 
          * })
          * 
