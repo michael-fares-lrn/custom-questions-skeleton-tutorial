@@ -45,6 +45,7 @@ export default class Question {
             this.suggestedAnswersList = suggestedAnswersList;
 
             // TODO - Requires implementation
+            /* The logic to render the UI of your custom question should go here */ 
         });
     }
 
@@ -60,9 +61,22 @@ export default class Question {
 
         facade.disable = () => {
             // TODO: Requires implementation
+            /**
+             * The purpose of this method is to prevent learner interaction with your question's UI.
+             * 
+             * If you plan to display your custom question in "review" state, then you need to implement this
+             * method to prevent a student or teacher reviewing their completed results from changing the question UI.
+             */
         };
         facade.enable = () => {
-            // TODO: Requires implementation
+            /**
+             * The purpose of this method is to re-anable learner interaction with your question's UI
+             * after it has been previously disabled.
+             * 
+             * You only need to implement this method
+             * if you plan to call the .disable() public method on your custom question programatically on a state OTHER than "review"
+             * 
+             */
         };
         facade.resetResponse = () => {
             // TODO: Requires implementation, you could use the following steps
@@ -75,10 +89,61 @@ export default class Question {
             // re-render the component, manage the 'reset' state by yourself
         };
         facade.showValidationUI = () => {
-            // placeholder comment TODO: requires implementation
+            // TODO: requires implementation
+            /**
+             * The purpose of this method is to update your custom question's UI with visual feedback 
+             * after the learner presses the Check Answer button.
+             * 
+             * The following is an example implementation that shows shows the standard Learnosity "checkmark / tick" for a correct answer
+             * or the standard Learnosity "x mark / cross" for an incorrect answer.
+             * 
+             */
+            
+            
+            // EXAMPLE implemetation:
+
+            // const answerIsCorrect = facade.isValid();
+            // /**
+            //  * update the UI based on the result
+            //  * IMPORTANT: In both cases we need to target the element with the classname lrn_response_input
+            //  */
+            // if (answerIsCorrect) {
+            //     /** if the answer is correct we will add the Learnosity utility class lrn_correct, which will automatically show the Learnosity
+            //      * checkmark (tick) you are used to on regular Learnosity quesiton types
+            //      */
+            //     el.querySelector(".lrn_response_input").classList.add("lrn_correct");
+            // } else {
+            //     /** if the answer is incorrect we will add the Learnosity utility class lrn_incorrect, which will automatically show the Learnosity
+            //      * x (cross) you are used to on regular Learnosity quesiton types
+            //      */
+            //     el.querySelector(".lrn_response_input").classList.add("lrn_incorrect");
+            // }
+             
+             
         };
         facade.resetValidationUI = () => {
-            // placeholder comment TODO: requires implementation
+            // TODO: requires implementation
+            /**
+             * If you implement showValidationUI() above, then you need to implement this method also.
+             * 
+             * If the user enters a response to your custom question, presses the Check Answer button, and then changes their response to something new,
+             * you now need to remove the feedback UI that you had displayed for the previous response. This is exactly the purpose of this method.
+             * 
+             * The following is an example implementation that removes the standard Learnosity validation UI ("checkmark / tick" for if the previous response was correct
+             * or "x mark / cross" if the previous response was incorrect).
+             * 
+             */
+
+            // Example implementation:
+
+            // // we will remove the Learnosity checkmark or x previously showing
+            // el.querySelector(".lrn_response_input").classList.remove("lrn_correct");
+            // el.querySelector(".lrn_response_input").classList.remove("lrn_incorrect");
+            
+            // // if we chose to also display the correct answer, we will now remove the display of the correct answer as well by 
+            // //leveraging the suggestedAnswersLists.reset() method.
+            // this.suggestedAnswersList.reset()
+
         };
     }
 
@@ -123,11 +188,11 @@ export default class Question {
          *   events.trigger('changed', responses);
          * 
          * // STEP 3 - OPTIONAL
-         * // If you chosen to implement facade.showValidationUI() to display visiual feedback for a correct / incorrect answer
+         * // If you have chosen to implement facade.showValidationUI() above to display visiual feedback for a correct / incorrect answer
          * when the user presses "Check Answer" for the current response:
-         *  then make sure you call facade.resetValidationUI() here:
+         *  then make sure you call facade.resetValidationUI() here to reset it:
          * 
-         * // facade.clearValidationUI()
+         * // facade.resetValidationUI()
          * 
          * })
          * 
@@ -155,12 +220,15 @@ export default class Question {
                 // pass a string of there is a single correct answer
                 //OR:
                 /**
-                * For custom questions with multiple correct answers, you can also pass an array of objects into this method, each object containing an index key of type number for the 0-based index of the correct answer, and a label key of type string for the text of the correct answer. So, for a hypothetical question with 3 correct answers, you might pass the following array into setAnswers():
+                * For custom questions with multiple correct answers, you can also pass an array of objects into this method, 
+                * each object containing an index key of type number for the 0-based index of the correct answer, 
+                * and a label key of type string for the text of the correct answer. 
+                * So, for a hypothetical question with 3 correct answers, you might pass the following array into setAnswers():
 
                     [
-                    {index: 0, label: "correct answer 1"},
-                    {index: 1, label: "correct answer 2"},
-                    {index: 2, label: "correct answer 3"}
+                     {index: 0, label: "correct answer 1"},
+                     {index: 1, label: "correct answer 2"},
+                     {index: 2, label: "correct answer 3"}
                     ]
 
                  */
