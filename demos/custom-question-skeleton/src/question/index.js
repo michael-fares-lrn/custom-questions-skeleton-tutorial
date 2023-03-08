@@ -30,6 +30,7 @@ export default class Question {
             <div class="${PREFIX} lrn-response-validation-wrapper">
                 <div class="lrn_response_input">
                     Requires implementation - YOUR CONTENT GOES IN HERE
+                    This element is the hook into which your custom question's UI should be rendered.
                 </div>            
                 <div class="${PREFIX}-checkAnswer-wrapper"></div>
                 <div class="${PREFIX}-suggestedAnswers-wrapper"></div>
@@ -187,10 +188,10 @@ export default class Question {
          *   
          *   events.trigger('changed', responses);
          * 
-         * // STEP 3 - OPTIONAL
-         * // If you have chosen to implement facade.showValidationUI() above to display visiual feedback for a correct / incorrect answer
-         * when the user presses "Check Answer" for the current response:
-         *  then make sure you call facade.resetValidationUI() here to reset it:
+         *  // STEP 3 - OPTIONAL
+         *  // If you have chosen to implement facade.showValidationUI() above to display visiual feedback for a correct / incorrect answer
+         *     when the user presses "Check Answer" for the current response:
+         *     then make sure you call facade.resetValidationUI() here to reset it:
          * 
          * // facade.resetValidationUI()
          * 
@@ -217,7 +218,7 @@ export default class Question {
             // then you should leverage the suggestedAnswersList.setAnswers() method.
             
             if (!facade.isValid() && options.showCorrectAnswers) {
-                // pass a string of there is a single correct answer
+                // pass a string if there is a single correct answer 
                 //OR:
                 /**
                 * For custom questions with multiple correct answers, you can also pass an array of objects into this method, 
@@ -232,7 +233,10 @@ export default class Question {
                     ]
 
                  */
-                this.suggestedAnswersList.setAnswers();
+                
+                // EXAMPLE Implementation:
+                
+                // this.suggestedAnswersList.setAnswers(this.question.valid_response);
             }
 
         });
