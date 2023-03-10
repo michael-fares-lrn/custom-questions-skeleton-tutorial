@@ -11,10 +11,27 @@ export default class Question {
             this.registerPublicMethods();
             this.handleEvents();
 
-            // PLACEHOLDER: Should we say something about updating the UI with saved responses in resume and review states here?
+            /**
+             * @param { String } init.state - the state of questions API.
+             state can be any of the following 3 strings
+            "initial" for first starting the assessment,
+             "resume" for coming back to a previously started assessmnet,
+             "review" for showing the completed assessment and results to the learner or teacher
+             * 
+             */
 
+             
+
+            // PLACEHOLDER: Should we say something about updating the UI with saved responses in resume and review states here?
+            // YES - MF to add
+                // this is necessary for reports API and showing results in a read-only mode to learners or instructors
             if (init.state === 'review') {
+                // update UI with saved respones
                 init.getFacade().disable();
+            }
+
+            if (init.state === 'resume') {
+                // update UI with saved respones
             }
 
             init.events.trigger('ready');
@@ -47,6 +64,9 @@ export default class Question {
 
             // TODO - Requires implementation
             /**  The logic to render the UI of your custom question should go here 
+             * 
+             * For example this might be a call to a function or instantiation of a class to render your UI components
+             * 
              * */ 
         });
     }
@@ -68,21 +88,19 @@ export default class Question {
              * The purpose of this method is to prevent learner interaction with your question's UI.
              * 
              * If you plan to display your custom question in "review" state, then you need to implement this
-             * method to prevent a student or teacher reviewing their completed results from changing the question UI.
+             * method to prevent a learner or instructor who is reviewing their completed results from being able to change the responses in your question UI.
              */
 
             // EXAMPLE implementation
             // document.getElementById('my-input').setAttribute('disabled', true)
-            // 
+
         };
         facade.enable = () => {
             /**
-             * The purpose of this method is to re-anable learner interaction with your question's UI
+             * The purpose of this method is to re-enable learner interaction with your question's UI
              * after it has been previously disabled.
-             * 
-             * You only need to implement this method
-             * if you plan to call the .disable() public method on your custom question programatically on a state OTHER than "review"
-             * (For example, if you plan to temporarily diable the question UI for a student taking the assessment until they complete another task like spend a set time reading the instructions)
+             *               
+             * For example, if you plan to temporarily disable the question UI for a student taking the assessment until they complete another task like spend a set time reading the instructions.
              * 
              */
 
@@ -92,7 +110,7 @@ export default class Question {
         facade.resetResponse = () => {
             /**
              * The purpose of this method is to support removal of a previously entered response to your custom question
-             * and restoring the question to its inital blank state before a repsonse was entered.
+             * and restoring the question to its initial blank state before a response was entered.
              * (For example, in a multiple choice question where a student has picked a choice, you reset the question so that no choices are picked at all.)
              */
 
@@ -111,7 +129,7 @@ export default class Question {
              * The purpose of this method is to update your custom question's UI with visual feedback 
              * after the learner presses the Check Answer button.
              * 
-             * The following is an example implementation that shows shows the standard Learnosity "checkmark / tick" for a correct answer
+             * The following is an example implementation that shows the standard Learnosity "checkmark / tick" for a correct answer
              * or the standard Learnosity "x mark / cross" for an incorrect answer.
              * 
              */
@@ -135,8 +153,7 @@ export default class Question {
             //      */
             //     el.querySelector(".lrn_response_input").classList.add("lrn_incorrect");
             // }
-             
-             
+                          
         };
         facade.resetValidationUI = () => {
             // TODO: requires implementation
@@ -146,7 +163,7 @@ export default class Question {
              * If the user enters a response to your custom question, presses the Check Answer button, and then changes their response to something new,
              * you now need to remove the feedback UI that you had displayed for the previous response. This is exactly the purpose of this method.
              * 
-             * The following is an example implementation that removes the standard Learnosity validation UI ("checkmark / tick" for if the previous response was correct
+             * The following is an example implementation that removes the standard Learnosity validation UI ("checkmark / tick" if the previous response was correct
              * or "x mark / cross" if the previous response was incorrect).
              * 
              */
@@ -172,12 +189,12 @@ export default class Question {
 
         /**
          * 
-         * 
-         * when you consider that the response to your question has been changed, 
+         * When you consider that the response to your question has been changed, 
          * (such when a user clicks the choice of a multiple choice question or enters text into a free response question),
          * then you must trigger the changed event to inform questions API that the question has been attempted.
+         * 
          * To do this, you must call events.trigger('changed', responses)  inside of a DOM event listener in which the user has changed their response to your question
-         * (such as a 'click' event listener for a multiple choice question, or an input 'change' event listener for a free response text question
+         * (such as a 'click' event listener for a multiple choice question, or an input 'change' event listener for a free response text question)
          * 
          * The 'responses' variable can be any data type you would like it to be depending on the format of your responses. 
          * For instance, it might be a string for the value of a simple text input
@@ -204,7 +221,7 @@ export default class Question {
          *  // STEP 3 - OPTIONAL
          *  // If you have chosen to implement facade.showValidationUI() above to display visiual feedback for a correct / incorrect answer
          *     when the user presses "Check Answer" for the current response:
-         *     then make sure you call have also impletmented facade.resetValidationUI(), and that you call it here:
+         *     then make sure you have also implemented facade.resetValidationUI(), and that you call it here:
          * 
          * // facade.resetValidationUI()
          * 
@@ -221,36 +238,37 @@ export default class Question {
         // The value showCorrectAnswers by default is the value of showCorrectAnswers inside initOptions object that is used
         // to initialize question app or the value of the options that is passed into public method validate (like question.validate({showCorrectAnswers: false}))
         events.on('validate', options => {
-             // OPTIONAL Step 1: if you want to show changes to the UI for a correct or incorrect answer when the student presses check answer
-            // do so by implementing facade.showValidationUI and calling it here.
-            // this implementation uses the familiar Learnosity checkmark or x for a correct or incorrect answer
+            // OPTIONAL Step 1: If you want to show changes to the UI for a correct or incorrect answer when the student presses check answer
+            // then make sure you have also implemented facade.showValidationUI(), and that you call it here:
             facade.showValidationUI()
 
 
             // OPTIONAL Step 2: If you want to display the correct answer to the student when they press the check answer button,
             // then you should leverage the suggestedAnswersList.setAnswers() method.
+
+            // EXAMPLE Implementation 
             
-            if (!facade.isValid() && options.showCorrectAnswers) {
-                // pass a string if there is a single correct answer 
-                //OR:
-                /**
-                * For custom questions with multiple correct answers, you can also pass an array of objects into this method, 
-                * each object containing an index key of type number for the 0-based index of the correct answer, 
-                * and a label key of type string for the text of the correct answer. 
-                * So, for a hypothetical question with 3 correct answers, you might pass the following array into setAnswers():
+            // if (!facade.isValid() && options.showCorrectAnswers) {
+            //     // pass a string if there is a single correct answer 
+            //     //OR:
+            //     /**
+            //     * For custom questions with multiple correct answers, you can also pass an array of objects into this method, 
+            //     * each object containing an index key of type number for the 0-based index of the correct answer, 
+            //     * and a label key of type string for the text of the correct answer. 
+            //     * So, for a hypothetical question with 3 correct answers, you might pass the following array into setAnswers():
 
-                    [
-                     {index: 0, label: "correct answer 1"},
-                     {index: 1, label: "correct answer 2"},
-                     {index: 2, label: "correct answer 3"}
-                    ]
+            //         [
+            //          {index: 0, label: "correct answer 1"},
+            //          {index: 1, label: "correct answer 2"},
+            //          {index: 2, label: "correct answer 3"}
+            //         ]
 
-                 */
+            //      */
                 
-                // EXAMPLE Implementation:
+            //     // EXAMPLE Implementation for a correct answer that is a string:
                 
-                // this.suggestedAnswersList.setAnswers(this.question.valid_response);
-            }
+            //     // this.suggestedAnswersList.setAnswers(this.question.valid_response);
+            // }
 
         });
     }
