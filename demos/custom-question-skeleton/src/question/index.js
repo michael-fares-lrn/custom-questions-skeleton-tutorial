@@ -46,7 +46,8 @@ export default class Question {
             this.suggestedAnswersList = suggestedAnswersList;
 
             // TODO - Requires implementation
-            /* The logic to render the UI of your custom question should go here */ 
+            /**  The logic to render the UI of your custom question should go here 
+             * */ 
         });
     }
 
@@ -54,6 +55,7 @@ export default class Question {
      * Add public methods to the created question instance that is accessible during runtime
      *
      * Example: questionsApp.question('my-custom-question-response-id').myNewMethod();
+     * 
      */
     registerPublicMethods() {
         const { init } = this;
@@ -68,6 +70,10 @@ export default class Question {
              * If you plan to display your custom question in "review" state, then you need to implement this
              * method to prevent a student or teacher reviewing their completed results from changing the question UI.
              */
+
+            // EXAMPLE implementation
+            // document.getElementById('my-input').setAttribute('disabled', true)
+            // 
         };
         facade.enable = () => {
             /**
@@ -76,10 +82,20 @@ export default class Question {
              * 
              * You only need to implement this method
              * if you plan to call the .disable() public method on your custom question programatically on a state OTHER than "review"
+             * (For example, if you plan to temporarily diable the question UI for a student taking the assessment until they complete another task like spend a set time reading the instructions)
              * 
              */
+
+            // EXAMPLE implementation
+            // document.getElementById('my-input').removeAttribute('disabled')
         };
         facade.resetResponse = () => {
+            /**
+             * The purpose of this method is to support removal of a previously entered response to your custom question
+             * and restoring the question to its inital blank state before a repsonse was entered.
+             * (For example, in a multiple choice question where a student has picked a choice, you reset the question so that no choices are picked at all.)
+             */
+
             // TODO: Requires implementation, you could use the following steps
 
             // trigger a 'resetResponse' event to reset the value of response
@@ -161,12 +177,9 @@ export default class Question {
          * (such when a user clicks the choice of a multiple choice question or enters text into a free response question),
          * then you must trigger the changed event to inform questions API that the question has been attempted.
          * To do this, you must call events.trigger('changed', responses)  inside of a DOM event listener in which the user has changed their response to your question
-         * (such as a 'click' event listener for a multiple choice question, or an input 'change' event listener for a free response text question)
-
-         */
-
-        /**
-         * @respones - this variable can be any data type you would like it to be depending on the format of your responses. 
+         * (such as a 'click' event listener for a multiple choice question, or an input 'change' event listener for a free response text question
+         * 
+         * The 'responses' variable can be any data type you would like it to be depending on the format of your responses. 
          * For instance, it might be a string for the value of a simple text input
          * Or for a quesiton asking a student plot coorinates on a graph, it might be an object containing the x and y coordinates, e.g.
          *     {
@@ -191,7 +204,7 @@ export default class Question {
          *  // STEP 3 - OPTIONAL
          *  // If you have chosen to implement facade.showValidationUI() above to display visiual feedback for a correct / incorrect answer
          *     when the user presses "Check Answer" for the current response:
-         *     then make sure you call facade.resetValidationUI() here to reset it:
+         *     then make sure you call have also impletmented facade.resetValidationUI(), and that you call it here:
          * 
          * // facade.resetValidationUI()
          * 
