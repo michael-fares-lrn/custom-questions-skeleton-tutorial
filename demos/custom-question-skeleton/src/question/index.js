@@ -12,12 +12,11 @@ export default class Question {
             this.handleEvents();
 
             /**
-             * @param { String } init.state - the state of questions API.
-             state can be any of the following 3 strings
-             "initial" for first starting the assessment,
-             "resume" for coming back to a previously started assessmnet,
-             "review" for showing the completed assessment and results to the learner or teacher
-             * 
+             * @param { String } init.state - the state of Questions API.
+             * state can be any of the following 3 strings
+             * "initial" for first starting the assessment,
+             * "resume" for coming back to a previously started assessment,
+             * "review" for showing the completed assessment and results to the learner or teacher
              */
              
              if (init.state === 'resume') {
@@ -25,12 +24,11 @@ export default class Question {
                  * If you want your custom question to support resume state
                  * (For a learner to be able to come back to your question in a future sitting after having previously started and saved the assessment),
                  * then make make sure to update your question's UI to display the previously saved response Questions API has stored in the back end.
-                 * 
                  */
 
                 // EXAMPLE implementation:
                 // if(init.response) {
-                //     // This example assumes a simple DOM input for the custom questions UI, and updates it's value to the value of the saved response upon resume. 
+                //     // This example assumes a simple DOM input for the custom question's UI, and updates its value to the value of the saved response upon resume. 
                 //     document.getElementById('my-input').value = init.response.value;
                 // }
             }
@@ -40,15 +38,13 @@ export default class Question {
                  * If you want your custom question to support review state
                  * (For a learner or instructor to be able to view their results in a read-only mode after having completed and submitted the assessment),
                  * then make make sure to update your question's UI to display the previously submitted response Questions API has stored in the back end.
-                 * 
                  */
 
                 // EXAMPLE implementation:
                 // if(init.response) {
-                //     // This example assumes a simple DOM input for the custom questions UI, and updates it's value to the value of the saved response upon resume. 
+                //     // This example assumes a simple DOM input for the custom questions UI, and updates its value to the value of the submitted response upon review. 
                 //     document.getElementById('my-input').value = init.response.value;
                 // }
-
 
                 /**
                  * below, we call the disable public method on the custom question to display it in a read-only mode
@@ -91,9 +87,9 @@ export default class Question {
             // TODO - Requires implementation
             /**  The logic to render the UI of your custom question should go here 
              * 
-             * For example this might be a call to a function or instantiation of a class to render your UI components
+             * For example this might be a call to a function or instantiation of a class to render your UI component(s)
              * 
-             * */ 
+             */ 
         });
     }
 
@@ -126,8 +122,7 @@ export default class Question {
              * The purpose of this method is to re-enable learner interaction with your question's UI
              * after it has been previously disabled.
              *               
-             * For example, if you plan to temporarily disable the question UI for a student taking the assessment until they complete another task like spend a set time reading the instructions.
-             * 
+             * (For example, you plan to temporarily disable the question UI for a student taking the assessment until they complete another task like spend a set time reading the instructions.)
              */
 
             // EXAMPLE implementation
@@ -156,10 +151,8 @@ export default class Question {
              * after the learner presses the Check Answer button.
              * 
              * The following is an example implementation that shows the standard Learnosity "checkmark / tick" for a correct answer
-             * or the standard Learnosity "x mark / cross" for an incorrect answer.
-             * 
+             * or the standard Learnosity "x mark / cross" for an incorrect answer. 
              */
-            
             
             // EXAMPLE implemetation:
 
@@ -191,7 +184,6 @@ export default class Question {
              * 
              * The following is an example implementation that removes the standard Learnosity validation UI ("checkmark / tick" if the previous response was correct
              * or "x mark / cross" if the previous response was incorrect).
-             * 
              */
 
             // Example implementation:
@@ -203,7 +195,6 @@ export default class Question {
             // // if we chose to also display the correct answer, we will now remove the display of the correct answer as well by 
             // //leveraging the suggestedAnswersLists.reset() method.
             // this.suggestedAnswersList.reset()
-
         };
     }
 
@@ -217,12 +208,13 @@ export default class Question {
          * 
          * When you consider that the response to your question has been changed, 
          * (such when a user clicks the choice of a multiple choice question or enters text into a free response question),
-         * then you must trigger the changed event to inform questions API that the question has been attempted.
+         * then you must trigger the changed event to inform Questions API that the question has been attempted.
          * 
-         * To do this, you must call events.trigger('changed', responses)  inside of a DOM event listener in which the user has changed their response to your question
+         * To do this, you must call events.trigger('changed', responses);  
+         * This call should take place inside of a DOM event listener in which the user has changed their response to your question
          * (such as a 'click' event listener for a multiple choice question, or an input 'change' event listener for a free response text question)
          * 
-         * The 'responses' variable can be any data type you would like it to be depending on the format of your responses. 
+         * @param responses The 'responses' variable can be any data type you would like it to be depending on the format of your custom question's responses. 
          * For instance, it might be a string for the value of a simple text input
          * Or for a quesiton asking a student plot coorinates on a graph, it might be an object containing the x and y coordinates, e.g.
          *     {
@@ -231,16 +223,15 @@ export default class Question {
          *     }
          */
 
-
         /** EXAMPLE implementation
          * 
          * document.getElementById('my-input').addEventListener('click', (event) => {
          *   
-         *   // STEP 1: when the user clicks on your custom question's input, save its current value as the value of responses
+         *  // STEP 1: when the user clicks on your custom question's input, save its current value as the value of responses
          *  let responses = event.target.value
          *   
          *  // STEP 2: 
-         *  // now notfy questions API that the user has changed their response
+         *  // now notfy Questions API that the user has changed their response
          *   
          *   events.trigger('changed', responses);
          * 
@@ -264,13 +255,14 @@ export default class Question {
         // The value showCorrectAnswers by default is the value of showCorrectAnswers inside initOptions object that is used
         // to initialize question app or the value of the options that is passed into public method validate (like question.validate({showCorrectAnswers: false}))
         events.on('validate', options => {
-            // OPTIONAL Step 1: If you want to show changes to the UI for a correct or incorrect answer when the student presses check answer
+            // OPTIONAL Step 1: 
+            //If you want to show changes to the UI for a correct or incorrect answer when the student presses check answer
             // then make sure you have also implemented facade.showValidationUI(), and that you call it here:
             facade.showValidationUI()
 
-
-            // OPTIONAL Step 2: If you want to display the correct answer to the student when they press the check answer button,
-            // then you should leverage the suggestedAnswersList.setAnswers() method.
+            // OPTIONAL Step 2: 
+            // If you want to display the correct answer to the learner when they press the Check Answer button,
+            // then you should leverage the suggestedAnswersList.setAnswers() method. Please see the example implementation below for full details.
 
             // EXAMPLE Implementation 
             
