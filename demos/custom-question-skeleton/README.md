@@ -1,3 +1,16 @@
+## Key Files
+
+**** To do - explain "backend agnostic" php files This skeleton has been developed as a proof of concept using our most commmon env *****
+
+
+* assessment.php
+* authoring.php
+* src/question/index.js
+* src/scorer/index.js
+
+
+
+
 ## Available Scripts
 * Start the localhost server to start developing your custom question
 ```

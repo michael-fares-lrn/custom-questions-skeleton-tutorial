@@ -38,6 +38,7 @@ export default class Question {
                  * If you want your custom question to support review state
                  * (For a learner or instructor to be able to view their results in a read-only mode after having completed and submitted the assessment),
                  * then make make sure to update your question's UI to display the previously submitted response Questions API has stored in the back end.
+                 * NOTE: this is required if you intend to use Reports API with your custom question (for example the session-detail-by-item report).
                  */
 
                 // EXAMPLE implementation:
@@ -85,9 +86,9 @@ export default class Question {
             this.suggestedAnswersList = suggestedAnswersList;
 
             // TODO - Requires implementation
-            /**  The logic to render the UI of your custom question should go here 
+            /**  The logic to render the UI of your custom question should go here. 
              * 
-             * For example this might be a call to a function or instantiation of a class to render your UI component(s)
+             * For example this might be a call to a function or instantiation of a class to render your UI component(s).
              * 
              */ 
         });
@@ -193,7 +194,7 @@ export default class Question {
             // el.querySelector(".lrn_response_input").classList.remove("lrn_incorrect");
             
             // // if we chose to also display the correct answer, we will now remove the display of the correct answer as well by 
-            // //leveraging the suggestedAnswersLists.reset() method.
+            // // leveraging the suggestedAnswersList.reset() method.
             // this.suggestedAnswersList.reset()
         };
     }
@@ -216,7 +217,7 @@ export default class Question {
          * 
          * @param responses The 'responses' variable can be any data type you would like it to be depending on the format of your custom question's responses. 
          * For instance, it might be a string for the value of a simple text input
-         * Or for a quesiton asking a student plot coorinates on a graph, it might be an object containing the x and y coordinates, e.g.
+         * Or for a quesiton asking a student to plot coorinates on a graph, it might be an object containing the x and y coordinates, e.g.
          *     {
          *       x: 123,
          *       y: 408
@@ -225,7 +226,7 @@ export default class Question {
 
         /** EXAMPLE implementation
          * 
-         * document.getElementById('my-input').addEventListener('click', (event) => {
+         * document.getElementById('my-radio-button').addEventListener('click', (event) => {
          *   
          *  // STEP 1: when the user clicks on your custom question's input, save its current value as the value of responses
          *  let responses = event.target.value
@@ -256,7 +257,7 @@ export default class Question {
         // to initialize question app or the value of the options that is passed into public method validate (like question.validate({showCorrectAnswers: false}))
         events.on('validate', options => {
             // OPTIONAL Step 1: 
-            //If you want to show changes to the UI for a correct or incorrect answer when the student presses check answer
+            //If you want to show changes to the UI for a correct or incorrect answer when the learner presses check answer
             // then make sure you have also implemented facade.showValidationUI(), and that you call it here:
             facade.showValidationUI()
 
