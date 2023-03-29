@@ -1,6 +1,8 @@
 ## Key Files
 
-**** To do - explain "backend agnostic" php files This skeleton has been developed as a proof of concept using our most commmon env *****
+**** To do - explain "backend agnostic" php files  + key JS files
+
+e.g. This skeleton has been developed as a proof of concept using our most commmon env *****
 
 
 * assessment.php
@@ -21,7 +23,7 @@ Once your custom question is ready, run this script and copy it to your server.
 ```
 yarn prod
 ```
-* Test your scorer's behavior in the server side. Update question/response in `debugeServerScorer.js` to test
+* Test your scorer's behavior in the server side. Update question/response in `debugServerScorer.js` to test
 ```
 yarn debug-server-scorer
 ```
