@@ -12,7 +12,9 @@ This skeleton has been developed as a proof of concept using our most commmon en
 #### JSON
 * `question.json` - REQUIRED. This file is for creating the JSON definition of your custom question to be stored inside of Learnosity.
 
-* `question_editor_init_options.json` - OPTIONAL. Required only if you intend for new instances of your custom question to be authorable via the Learnosity Question editor UI. Please see our help article on How to Create Custom Question for more detail:  [How to Create Custom Question/Tile Items](https://help.learnosity.com/hc/en-us/articles/360000755098-Authoring-Custom-Questions-Features#how-to-create-custom-question--feature-custom-tile-items) for more detail.
+* `question_editor_init_options.json` - OPTIONAL. Required only if you intend for new instances of your custom question to be authorable via the Learnosity Question editor UI. Please see our help article on How to Create A Custom Question Authoring Tile for more detail:
+
+https://help.learnosity.com/hc/en-us/articles/360000755098-Authoring-Custom-Questions-Features#how-to-create-custom-question--feature-custom-tile-items
 
 #### php
 
