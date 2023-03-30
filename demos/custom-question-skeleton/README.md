@@ -1,15 +1,28 @@
+This skeleton has been developed as a proof of concept using our most commmon environment 
+
 ## Key Files
 
-e.g. This skeleton has been developed as a proof of concept using our most commmon env *****
+#### Javascript and CSS
 
-* assessment.php
-* authoring.php
+* `src/question/index.js` - frontend javascript code for developing the UI of your custom question. All logic related to rendering your custom quesiton UI should go here. 
+* `src/scorer/index.js` - backend javascript code for developing the scoring logic of your custom question. This code will be run on the server-side when your custom question is scored in Learnosity.
 
-* src/question/index.js - for developing the UI of your custom question. All logic related to rendering your custom quesiton UI should go here. 
-* src/scorer/index.js - for developing the scoring logic of your custom question. This code will be run on the server when your custom question is scored in Learnosity.
+* `scss/_question.scss` - for writing CSS styling rules to be applied to your custom quesiton UI.
 
-* scss/_question.scss - for writing CSS styling rules to be applied to your custom quesiton UI.
+#### php
 
+These php files are development scafolding files and their purpose is to emulate the Learnosity production environment during development so as to model how your custom question will behave as a first class citizen accross the Learnosity ecosystem from Authoring to Assessmnet to Analytics, just like any out of the box Learnosity question type.
+
+You can therefore think of these files as a "development-server" whose language happens to be php. You don't need to make any changes to these files unless you want to.
+
+* `assessment.php` - For modeling how your custom question will behave in an Assessment. 
+    Available at `localhost:12345/assessmnet.php`.
+
+* `authoring.php`- If intend to make your custom question available to authors, this file is for modeling how your custom question will behave in on the Author Site or standalone Author API. 
+    Available at `localhost:12345/authoring.php`
+
+### html
+`authoring_custom_layout.html` - If intend to make your custom question available to authors, this file is for defining the question editor UI layout and appearance for authors who create new instances of your custom question. 
 
 
 
@@ -26,4 +39,8 @@ yarn prod
 * Test your scorer's behavior in the server side. Update question/response in `debugServerScorer.js` to test
 ```
 yarn debug-server-scorer
+```
+* run unit tests for your custom question
+```
+yarn unit-tests
 ```
