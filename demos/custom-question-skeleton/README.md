@@ -29,7 +29,7 @@ https://help.learnosity.com/hc/en-us/articles/360000755098-Authoring-Custom-Ques
 
 #### php
 
-These php files are development scafolding files and their purpose is to emulate the Learnosity production environment during development so as to model how your custom question will behave as a first class citizen accross the Learnosity ecosystem from Authoring to Assessmnet to Analytics, just like any out of the box Learnosity question type.
+These php files are development scafolding files and their purpose is to emulate the Learnosity production environment during development so as to model how your custom question will behave as a first class citizen across the Learnosity ecosystem from Authoring to Assessmnet to Analytics, just like any out of the box Learnosity question type.
 
 You can therefore think of these files as a "development-server" whose language happens to be php. You don't need to make any changes to these files unless you want to. They automatically injest the JSON you create in the above 2 files.
 
@@ -49,7 +49,7 @@ yarn dev
 * Bundle the production ready code of your custom question. 
 Once your custom question is ready, run this script and host the resulant `question.js`, `scorer.js`, `question.css` and `authoring_custom_layout.html` files on your server.
 
-The paths to these files can be easily managed and aliased via the custom questions module on our self-serive site, console.learnosity.com:
+The paths to these files can be easily managed and aliased via the custom questions module on our self-service site, console.learnosity.com:
 
 https://help.learnosity.com/hc/en-us/articles/360000756198-Console-Overview#custom-questions
 
