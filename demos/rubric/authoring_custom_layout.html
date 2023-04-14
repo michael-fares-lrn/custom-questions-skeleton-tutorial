@@ -1,0 +1,30 @@
+
+<div class="lrn-qe-edit-form">
+    <span data-lrn-qe-label="stimulus"></span>
+    <span data-lrn-qe-input="stimulus" class="lrn-qe-ckeditor-lg"></span>
+
+    <span class="lrn-qe-text-bold" data-lrn-qe-label="categories"></span>
+
+    <div data-lrn-qe-loop="categories[*]">
+        <div class="lrn-qe-row-flex">
+            <div class="lrn-qe-col-xs-4" data-lrn-qe-layout-wrapper>
+                <span class="lrn-qe-text-bold">Name:</span>
+                <span data-lrn-qe-input="categories[*].label"></span>
+            </div>
+            <div class="lrn-qe-col-xs-4" data-lrn-qe-layout-wrapper>
+                <span class="lrn-qe-text-bold">Points Possible:</span>
+                <span data-lrn-qe-input="categories[*].points"></span>
+            </div>
+            <div class="lrn-qe-col-xs-4 lrn-qe-margin-top-md" data-lrn-qe-layout-wrapper>
+                <span data-lrn-qe-action-remove="categories[*]"></span>
+            </div>
+        </div>
+
+        <span class="lrn-qe-text-bold lrn-qe-margin-end-md">Detailed description for this category:</span>
+                
+        <span data-lrn-qe-input="categories[*].description"></span>
+        
+        <div class="lrn-qe-divider"></div>
+    </div>
+    <span data-lrn-qe-action-add="categories"></span>   
+</div>
