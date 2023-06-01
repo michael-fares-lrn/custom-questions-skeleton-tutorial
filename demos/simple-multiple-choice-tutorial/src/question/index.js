@@ -132,7 +132,6 @@ export default class Question {
                 events.trigger("changed", responseObject);
                 
                 // Finally, lets call getResponse() on the runtime facade of our question, to make sure we see an output
-                console.log("You clicked a choice! The current response is: ", facade.getResponse());
                 // if questions API has sucessfully picked up the learners changed repsonse
                 // then when clicking on "Choice A - Denver" in our question, 
                 // we should see the following logged to the console:
@@ -154,6 +153,9 @@ export default class Question {
                  *  we will work directly with this nested value property above and compare it to the valid_response object on
                  * our custom question when implementing the scoring logic in src/scorer/index.js
                  */
+
+
+            events.trigger("my-event")
 
             });
         });
@@ -194,5 +196,8 @@ export default class Question {
                     this.suggestedAnswersList.setAnswers(correctAnswer.label);
             }
         });
+        events.on('my-event', () => {
+            console.log('my-event FIRED')
+        })
     }
 }
