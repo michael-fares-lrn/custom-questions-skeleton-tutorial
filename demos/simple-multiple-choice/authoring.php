@@ -16,7 +16,7 @@ $request = '
           "question_type_templates": {
             "custom_question_skeleton": [
               {
-                "name": "Custom Simple Multiple Choice Question - AUTHORING EXAMPLE",
+                "name": "Custom MCQ Question",
                 "description": "Demonstrates an example of setting up authoring for a custom question type",
                 "group_reference": "company_x_custom_questions",
                 "defaults": {
@@ -130,7 +130,7 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
 <script>
     window.activity = <?php echo $signedRequest; ?>;
 
-    window.questionEditorApp = LearnosityAuthor.init(activity, {
+    window.authorApp = LearnosityAuthor.init(activity, {
         readyListener() {
             console.log('ready');
         },

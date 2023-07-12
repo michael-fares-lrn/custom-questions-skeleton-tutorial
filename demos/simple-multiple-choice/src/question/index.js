@@ -49,16 +49,22 @@ export default class Question {
 
             renderUI(el, question, response, state);
 
-            // Items API reading Item level data from inside custom question
-            console.log("window from inside custom question code", window);
-            console.log("window.LearnosityItems from inside custom quesiton code", window.LearnosityItems);
+            // Try to access the window object
+            console.log("window from inside custom q render()", window);
+
+            // try to access window.LearnosityItems and window.LearnosityAuthor
+            console.log("window.LearnosityItems from inside custom q render()", window.LearnosityItems);
+            console.log("window.LearnosityAuthor from inside custom q render()", window.LearnosityAuthor);
             
-            // try to call getCurrentItem() if itemsApp IS NOT exposed via items API on the window object
+            // try to call getCurrentItem() - Items API
             if(window.LearnosityItems) {
-                console.log("itemsApp.getCurrentItem()", itemsApp.getCurrentItem());
+                console.log("itemsApp.getCurrentItem() inside custom q render()", itemsApp.getCurrentItem());
             }
-            //  try to call getCurrentItem() if itemsApp IS exposed via items API on the window object
-            console.log("window.itemsApp.getCurrentItem()", window.itemsApp?.getCurrentItem());
+
+            // try to call authorApp.editorApp() - Author API
+              if(window.LearnosityAuthor) {
+                console.log("authorApp.editorApp() inside custom q render()", authorApp.editorApp());
+            }
     });
     }
 
@@ -125,27 +131,38 @@ export default class Question {
                 let responseObject = { value: event.target.value };
 
                 events.trigger("changed", responseObject);
+
+            // When a response is changed:
+
+            // try to call getCurrentItem() if itemsApp IS NOT exposed via items API on the window object
+            if(window.LearnosityItems) {
+                console.log("itemsApp.getCurrentItem() inside of custom q changed event", itemsApp.getCurrentItem());
+            }
+            //  try to call getCurrentItem() if itemsApp IS exposed via items API on the window object
+            console.log("window.itemsApp.getCurrentItem() inside of custom q changed event", window.itemsApp?.getCurrentItem());
             });
         });
 
         events.on("validate", (options) => {
-            // when check answer is pressed, then try to show the assessment player
+
+          
+
+            // when check answer is pressed, then try to show the assessment player:
+
             // accessibility dialog from inside Items API:
 
-            // if itemsApp IS NOT exposed via items API on the window object
-            if(window.LearnosityItems) {
+             if(window.LearnosityItems) {
+                console.log("itemsApp.dialogs().accessibility.show()");
                 itemsApp.dialogs().accessibility.show()
             }
 
-            // try to call getCurrentItem() if itemsApp IS NOT exposed via items API on the window object
-            if(window.LearnosityItems) {
-                console.log("itemsApp.getCurrentItem()", itemsApp.getCurrentItem());
+             // try to call authorApp.editorApp().undo() - Author API [To undo the latest change]
+             if(window.LearnosityAuthor) {
+                console.log("calling authorApp.editorApp().undo()");
+                authorApp.editorApp().undo()
             }
 
-            // if itemsApp IS exposed via items API on the window object:
-            window.itemsApp?.dialogs().accessibility.show()
-
-
+         
 
             const answerIsCorrect = facade.isValid();
 
