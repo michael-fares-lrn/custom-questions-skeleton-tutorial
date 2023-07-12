@@ -132,13 +132,18 @@ export default class Question {
             // when check answer is pressed, then try to show the assessment player
             // accessibility dialog from inside Items API:
 
-            // if itemsApp IS exposed via items API on the window object:
-            window.itemsApp?.dialogs().accessibility.show()
-
             // if itemsApp IS NOT exposed via items API on the window object
             if(window.LearnosityItems) {
                 itemsApp.dialogs().accessibility.show()
             }
+
+            // try to call getCurrentItem() if itemsApp IS NOT exposed via items API on the window object
+            if(window.LearnosityItems) {
+                console.log("itemsApp.getCurrentItem()", itemsApp.getCurrentItem());
+            }
+
+            // if itemsApp IS exposed via items API on the window object:
+            window.itemsApp?.dialogs().accessibility.show()
 
 
 
