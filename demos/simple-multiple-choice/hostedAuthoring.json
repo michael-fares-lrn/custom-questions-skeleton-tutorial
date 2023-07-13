@@ -1,0 +1,98 @@
+{
+    "config": {
+      "dependencies": {
+        "question_editor_api": {
+          "init_options": {
+            "question_type_groups": [
+              {
+                  "name": "Support Custom Questions",
+                  "reference": "support_custom_questions"
+              }
+            ],
+            "question_type_templates": {
+              "custom_mcq": [
+                {
+                  "name": "Custom MCQ Question - TEST",
+                  "description": "A test custom question to test interoperability",
+                  "group_reference": "support_custom_questions",
+                  "defaults": {
+                    "type": "custom",
+                    "stimulus": "[Your question here]",
+                    "valid_response" : {
+                        "value" : ""
+                    },
+                    "choices" : [
+                        {"label": "CHOICE A", "value": "0"},
+                        {"label": "CHOICE B", "value": "1"},
+                        {"label": "CHOICE C", "value": "2"},
+                        {"label": "CHOICE D", "value": "3"}
+                    ],
+                    "score" : 1,
+                    "js": {
+                      "question": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.js",
+                      "scorer": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/scorer.js"
+                    },
+                    "css": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.css",
+                    "instant_feedback": true
+                  }
+                }
+              ]
+            },
+            "custom_question_types": [
+              {
+                "custom_type": "custom_mcq",
+                "type": "custom",
+                "name": "Custom Question - Skeleton",
+                "editor_layout": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/authoring_custom_layout.html",
+                "js": {
+                  "question": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.js",
+                  "scorer": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/scorer.js"
+                },
+                "css": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.css",
+                "version": "v1.0.0",
+                "editor_schema": {
+                  "hidden_question": false,
+                  "properties": {
+                      "instant_feedback": {
+                        "name": "Check answer button",
+                        "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
+                        "type": "boolean",
+                        "required": false,
+                        "default": false
+                      },
+                      "choices": {
+                        "name": "Define the choices here",
+                        "description": "",
+                        "type": "array",
+                        "required": true,
+                        "items": {
+                          "type": "object",
+                          "attributes": {
+                            "label": {
+                              "type": "editor"
+                            }
+                          }
+                        }
+                      },
+                      "valid_response" : {
+                        "type" : "question",
+                        "name" : "Set the correct answer",
+                        "description" : "Correct answer for the question",
+                        "required": true,
+                        "white_list" : ["value", "choices"]
+                      },
+                      "score" : {
+                        "type" : "number",
+                        "name": "Score",
+                        "description": "Score for a correct answer.",
+                        "required": true
+                      }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
