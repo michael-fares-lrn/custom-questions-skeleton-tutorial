@@ -27,7 +27,8 @@ $request = '{
           },
           "css": "/dist/question.css",
           "instant_feedback": true
-        }
+        },
+        "is_math": true
     ]
 }';
 $requestData = json_decode($request, true);

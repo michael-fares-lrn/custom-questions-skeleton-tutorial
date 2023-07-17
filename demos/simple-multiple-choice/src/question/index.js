@@ -60,10 +60,14 @@ export default class Question {
             if(window.LearnosityItems) {
                 console.log("itemsApp.getCurrentItem() inside custom q render()", itemsApp.getCurrentItem());
             }
-
-            // try to call authorApp.editorApp() - Author API
+              // try to call authorApp.editorApp() - Author API
               if(window.LearnosityAuthor) {
                 console.log("authorApp.editorApp() inside custom q render()", authorApp.editorApp());
+            }
+
+            // try to call authorApp.getItem().item.dynamic_content_data - Author API
+            if(window.LearnosityAuthor) {
+                console.log("authorApp.getItem().item.dynamic_content_data, inside custom q render", authorApp.getItem().item.dynamic_content_data);
             }
     });
     }
@@ -140,6 +144,14 @@ export default class Question {
             }
             //  try to call getCurrentItem() if itemsApp IS exposed via items API on the window object
             console.log("window.itemsApp.getCurrentItem() inside of custom q changed event", window.itemsApp?.getCurrentItem());
+
+              // try to call authorApp.getItem().item.dynamic_content_data - Author API
+              if(window.LearnosityAuthor) {
+                console.log("authorApp.getItem().item.dynamic_content_data, inside custom q changed event", authorApp.getItem().item.dynamic_content_data);
+             }
+
+
+
             });
         });
 
@@ -151,15 +163,20 @@ export default class Question {
 
             // accessibility dialog from inside Items API:
 
-             if(window.LearnosityItems) {
-                console.log("itemsApp.dialogs().accessibility.show()");
-                itemsApp.dialogs().accessibility.show()
-            }
+            //  if(window.LearnosityItems) {
+            //     console.log("itemsApp.dialogs().accessibility.show()");
+            //     itemsApp.dialogs().accessibility.show()
+            // }
 
              // try to call authorApp.editorApp().undo() - Author API [To undo the latest change]
-             if(window.LearnosityAuthor) {
-                console.log("calling authorApp.editorApp().undo()");
-                authorApp.editorApp().undo()
+            //  if(window.LearnosityAuthor) {
+            //     console.log("calling authorApp.editorApp().undo()");
+            //     authorApp.editorApp().undo()
+            // }
+
+              // try to call authorApp.getItem().item.dynamic_content_data - Author API
+              if(window.LearnosityAuthor) {
+                console.log("authorApp.getItem().item.dynamic_content_data, inside custom q validate event", authorApp.getItem().item.dynamic_content_data);
             }
 
          

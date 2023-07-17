@@ -42,7 +42,7 @@
               {
                 "custom_type": "custom_mcq",
                 "type": "custom",
-                "name": "Custom Question - Skeleton",
+                "name": "Custom Question - MCQ",
                 "editor_layout": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/authoring_custom_layout.html",
                 "js": {
                   "question": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.js",
