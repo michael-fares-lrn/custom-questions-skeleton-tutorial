@@ -58,6 +58,27 @@ $request = '
               "editor_schema": {
                 "hidden_question": false,
                 "properties": {
+                    "media_type": {
+                      "name": "Media Type",
+                      "description": "please choose a media type here",
+                      "element": "select",
+                      "options": [
+                        {
+                          "label": "Video",
+                          "value": "video"
+                        },
+                        {
+                          "label": "Image",
+                          "value": "image"
+                        },
+                        {
+                          "label": "Audio",
+                          "value": "audio"
+                        }
+                      ],
+                      "default": "number",
+                      "type": "string"
+                    },
                     "instant_feedback": {
                       "name": "Check answer button",
                       "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
@@ -92,6 +113,47 @@ $request = '
                       "description": "Score for a correct answer.",
                       "required": true
                     }
+                },
+                "conditional_attributes": {
+                  "attribute_key": "media_type",
+                  "conditions": [
+                    {
+                      "value": "video",
+                      "attributes": {
+                        "video": {
+                          "type": "string",
+                          "required": false,
+                          "name":"Video URL",
+                          "description": "URL of video",
+                          "element": "string"
+                        }
+                      }
+                    },
+                    {
+                      "value": "audio",
+                      "attributes": {
+                        "audio": {
+                          "type": "string",
+                          "required": false,
+                          "name":"Audio URL",
+                          "description": "URL of audio file",
+                          "element": "string"
+                        }
+                      }
+                    },
+                    {
+                      "value": "image",
+                      "attributes": {
+                        "image": {
+                          "type": "string",
+                          "required":false,
+                          "name":"Image URL",
+                          "description": "URL of image file",
+                          "element": "string"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
