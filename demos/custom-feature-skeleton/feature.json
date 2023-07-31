@@ -1,0 +1,6 @@
+{
+    "type": "customfeature",
+    "text": "I am an example \"text\" property for custom feature",
+    "js": "/dist/feature.js",
+    "css": "/dist/feature.css"
+}
