@@ -35,7 +35,7 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
         <textarea readonly></textarea>
     </div>
     <div class="client-request-json" data-type="htmlLayout">
-        <div><b>Custom Question HTML Layout</b></div>
+        <div><b>Custom Feature HTML Layout</b></div>
         <textarea readonly></textarea>
     </div>
 </div>

@@ -22,14 +22,33 @@ export default class Feature {
 
         // TODO: Requires implementation
         el.innerHTML = `
-                <div class="lrn_feature wrapper ${PREFIX}">
-                    <button id="my-button">${feature.text}</button>
+                <div class="lrn_feature_wrapper ${PREFIX}">
+                    Requires implementation - YOUR CONTENT GOES IN HERE
+                    This element is the hook into which your custom feature's UI should be rendered.
                 </div>            
         `;
 
-        // Optional - Render optional Learnosity components like Check Answer Button, Suggested Answers List
-        // first before rendering your question's components
-        return Promise.all([]).then(([]) => {});
+        return Promise.all([]).then(() => {
+              // TODO - Requires implementation
+            /**  The logic to render the UI of your custom question should go here. 
+             * 
+             * For example this might be a call to a function or instantiation of a class to render your UI component(s).
+             * 
+             * 
+             */ 
+
+            /** Example implementation below that renders a simple decarative h1 display
+             *  - you may replace the following lines below with your own code */
+            
+                // create a simple h1
+                const myFeatureHeading = document.createElement('h1')
+                myFeatureHeading.classList.add('my-custom-feature-heading')
+                // add the text given for our custom feature JSON's example_custom_property in feature.json
+                myFeatureHeading.innerHTML = feature.example_custom_property;
+                // append the h1 to the custom feature wrapper hook element
+                el.querySelector('.lrn_feature_wrapper').appendChild(myFeatureHeading)
+
+        });
     }
 
     /**
@@ -55,30 +74,6 @@ export default class Feature {
     handleEvents() {
         const { events, init, el } = this;
         const facade = init.getFacade()
-
-        const myButton = el.querySelector('#my-button');
-
-        // A normal DOM event listener to listen for the target interaction with 
-        // the feature
-        // this example uses simple button with a click event listener
-        // that once clicked disabled the button and then triggers a custom event called 'my-custom-event'.
-        myButton.addEventListener('click', () => {
-            myButton.innerText = "Okay, you've interacted with me. Thank you!";
-            myButton.setAttribute("disabled", true)
-            
-            // trigger a custom event to Learnosity using the events.trigger() method
-            events.trigger('my-custom-event')
-
-        })
-
-        events.on('my-custom-event', () => {
-            console.log('my-custom-event FIRED')
-        }
-    ) 
-           
-
-
-      
-  
+ 
     }
 }
