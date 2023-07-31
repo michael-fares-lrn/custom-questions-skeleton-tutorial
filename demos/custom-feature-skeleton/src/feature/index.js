@@ -52,9 +52,9 @@ export default class Feature {
     }
 
     /**
-     * Add public methods to the created question instance that is accessible during runtime
+     * Add public methods to the created feature instance that is accessible during runtime
      *
-     * Example: questionsApp.question('my-custom-question-response-id').myNewMethod();
+     * Example: questionsApp.feature('my-custom-feature-feature-id').myNewMethod();
      * 
      */
     registerPublicMethods() {
