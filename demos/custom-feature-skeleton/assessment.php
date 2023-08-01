@@ -31,13 +31,13 @@ $signedRequest = signAssessmentRequest($requestData);
     Feature ID: <code><?php echo $featureId; ?></code>
 </div>
 <span class="learnosity-feature feature-<?php echo $featureId; ?>"></span>
-<div class="client-save-wrapper">
+<div class="client-save-wrapper client-hidden">
     <span class="learnosity-save-button"></span>
 </div>
-<div id="redirect_response" class="client-hidden">
-    Save Successful! Do you want to go to
-    <button type="button" class="client-btn" data-action="resume">Resume</button> or
-    <button type="button" class="client-btn" data-action="review">Review</button> mode ?
+<div id="redirect_response">
+    Click here to view your custom feature in 
+    <button type="button" class="client-btn client-hidden" data-action="resume">Resume</button>
+    <button type="button" class="client-btn" data-action="review">Review</button> mode.
 </div>
 <div class="client-request-json">
     <div><b>Request init options</b></div>

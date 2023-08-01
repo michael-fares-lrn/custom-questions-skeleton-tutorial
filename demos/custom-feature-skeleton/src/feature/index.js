@@ -11,6 +11,16 @@ export default class Feature {
             this.registerPublicMethods();
             this.handleEvents();
 
+            if (init.state === 'review') {
+
+             /**
+              * below, we call the disable public method on the custom feature to display it in a read-only mode
+              * to learners and/or instructors viewing the completed results.
+              * (Please see this.registerPublicMethods below for more detials about the .disable() method, including an example implementation)
+              */
+             init.getFacade().disable();
+         }
+
 
             init.events.trigger('ready');
         });
@@ -64,6 +74,8 @@ export default class Feature {
 
         // default methods that come with the custom Q skeleton - can ignore
         facade.disable = () => {
+
+            console.log("DISABLED")
 
         };
         facade.enable = () => {
