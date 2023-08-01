@@ -72,14 +72,29 @@ export default class Feature {
         // Attach the methods you want on this object
         const facade = init.getFacade();
 
-        // default methods that come with the custom Q skeleton - can ignore
         facade.disable = () => {
+            // TODO: Requires implementation
+            /**
+             * The purpose of this method is to prevent learner interaction with your question's UI.
+             * 
+             * If you plan to display your custom feature in "review" state, then you may want to implement this
+             * method to prevent a learner or instructor who is reviewing their completed results from being able to interact with the feature UI.
+             */
 
-            console.log("DISABLED")
+            // EXAMPLE implementation
+            // document.getElementById('my-feature').setAttribute('disabled', true)
 
         };
         facade.enable = () => {
+            /**
+             * The purpose of this method is to re-enable learner interaction with your feature's UI
+             * after it has been previously disabled.
+             *               
+             * (For example, you plan to temporarily disable the feature UI for a student taking the assessment until they complete another task like spend a set time reading the instructions.)
+             */
 
+            // EXAMPLE implementation
+            // document.getElementById('my-feature').removeAttribute('disabled')
         };
     }
 
