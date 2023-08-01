@@ -9,13 +9,12 @@ export default class Feature {
 
         this.render().then(() =>{
             this.registerPublicMethods();
-            this.handleEvents();
 
             if (init.state === 'review') {
 
              /**
               * below, we call the disable public method on the custom feature to display it in a read-only mode
-              * to learners and/or instructors viewing the completed results.
+              * to learners and/or instructors viewing their completed assessment results (via Reports API or Items API in "review" mode).
               * (Please see this.registerPublicMethods below for more detials about the .disable() method, including an example implementation)
               */
              init.getFacade().disable();
@@ -47,7 +46,7 @@ export default class Feature {
              * 
              */ 
 
-            /** Example implementation below that renders a simple decarative h1 display
+            /** Example implementation below that renders a simple decorative text display
              *  - you may replace the following lines below with your own code */
             
                 // create a simple h1
@@ -57,7 +56,6 @@ export default class Feature {
                 myFeatureHeading.innerHTML = feature.example_custom_property;
                 // append the h1 to the custom feature wrapper hook element
                 el.querySelector('.lrn_feature_wrapper').appendChild(myFeatureHeading)
-
         });
     }
 
@@ -96,11 +94,5 @@ export default class Feature {
             // EXAMPLE implementation
             // document.getElementById('my-feature').removeAttribute('disabled')
         };
-    }
-
-    handleEvents() {
-        const { events, init, el } = this;
-        const facade = init.getFacade()
- 
     }
 }

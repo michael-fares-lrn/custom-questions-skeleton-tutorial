@@ -1,6 +1,6 @@
 {
     "type": "customfeature",
-    "example_custom_property": "Hi there! I am a simple custom feature!",
+    "example_custom_property": "Hi there! I am a basic custom feature!",
     "js": "/dist/feature.js",
     "css": "/dist/feature.css"
 }
