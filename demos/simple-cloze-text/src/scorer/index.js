@@ -10,9 +10,17 @@ export default class Scorer {
      * @returns {boolean}
      */
     isValid() {
-        // TODO: Requires implementation
+        const { question, response } = this
+        function areArraysEqual(a, b) {
+            return Array.isArray(a) &&
+                Array.isArray(b) &&
+                a.length === b.length &&
+                a.every((val, index) => val === b[index]);
+        }
 
-        return false;
+        console.log("response and valid_response at scorer.isValid()", response, question.valid_response)
+        return areArraysEqual(response, question.valid_response)
+
     }
 
     /**
@@ -25,7 +33,12 @@ export default class Scorer {
      */
     validateIndividualResponses() {
         // TODO: Requires implementation
-        return null;
+        let partial = {}
+        const { question, response } = this
+        question.valid_response.forEach((word, index) => {
+            partial[index] = response[index] === question.valid_response[index]
+        })
+        return partial;
     }
 
     /**
@@ -33,17 +46,11 @@ export default class Scorer {
      * @returns {number|null}
      */
     score() {
-        // TODO: Requires implementation
-        return 0;
+        return this.isValid() ? this.maxScore() : 0;
     }
 
-    /**
-     * Returns the possible max score of the stored response
-     * @returns {number}
-     */
     maxScore() {
-        // TODO: Requires implementation
-        return 0;
+        return this.question.score || 0;
     }
 
     /**
@@ -54,6 +61,6 @@ export default class Scorer {
      * @returns {boolean}
      */
     canValidateResponse() {
-        return true;
+        return this.question.valid_response;
     }
 }

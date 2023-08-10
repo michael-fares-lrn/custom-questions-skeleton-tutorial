@@ -3,6 +3,7 @@
     "type": "custom",
     "stimulus": "Fill in the blanks",
     "valid_response": ["Items", "Reports", "Data"],
+    "score": 1,
     "text": "Of the Learnosity Golden Path APIs, the {{response}} API delivers assessments, and the {{response}} API delivers reports. The {{response}} API is a backend API that delivers raw Learnosity JSON data.",
     "js": {
         "question": "/dist/question.js",
