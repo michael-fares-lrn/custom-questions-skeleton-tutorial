@@ -1,47 +1,69 @@
 {
-    "question_type_templates": {
-      "custom_question_skeleton": [
-        {
-          "name": "Custom Question - Skeleton",
-          "description": "A clean custom question - Skeleton",
-          "group_reference": "other",
-          "defaults": {
-            "type": "custom",
-            "stimulus": "This is stimulus",
-            "js": {
-              "question": "/dist/question.js",
-              "scorer": "/dist/scorer.js"
-            },
-            "css": "/dist/question.css",
-            "instant_feedback": true
-          }
-        }
-      ]
-    },
-    "custom_question_types": [
+  "question_type_groups": [
+    {
+        "name": "Company X Custom Questions",
+        "reference": "company_x_custom_questions"
+    }
+  ],
+  "question_type_templates": {
+    "custom_question_skeleton": [
       {
-        "custom_type": "custom_question_skeleton",
-        "type": "custom",
-        "name": "Custom Question - Skeleton",
-        "editor_layout": "/dist/authoring_custom_layout.html",
-        "js": {
-          "question": "/dist/question.js",
-          "scorer": "/dist/scorer.js"
-        },
-        "css": "/dist/question.css",
-        "version": "v1.0.0",
-        "editor_schema": {
-          "hidden_question": false,
-          "properties": {
-              "instant_feedback": {
-                "name": "Check answer button",
-                "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
-                "type": "boolean",
-                "required": false,
-                "default": false
-              }
-          }
+        "name": "Custom Cloze Text Question",
+        "description": "Demonstrates an example of setting up authoring for a custom question type",
+        "group_reference": "company_x_custom_questions",
+        "defaults" : {
+          "type": "custom",
+          "stimulus": "Fill in the blanks",
+          "valid_response": [],
+          "score": 1,
+          "text": "Of the Learnosity Golden Path APIs, the {{response}} API delivers assessments, and the {{response}} API delivers reports. The {{response}} API is a backend API that delivers raw Learnosity JSON data.",
+          "js": {
+            "question": "/dist/question.js",
+            "scorer": "/dist/scorer.js"
+          },
+          "css": "/dist/question.css",
+          "instant_feedback": true
         }
       }
     ]
-  }
+  },
+  "custom_question_types": [
+    {
+      "custom_type": "custom_question_skeleton",
+      "type": "custom",
+      "name": "Custom Question - Skeleton",
+      "editor_layout": "/dist/authoring_custom_layout.html",
+      "js": {
+        "question": "/dist/question.js",
+        "scorer": "/dist/scorer.js"
+      },
+      "css": "/dist/question.css",
+      "version": "v1.0.0",
+      "editor_schema": {
+        "hidden_question": false,
+        "properties": {
+          "instant_feedback": {
+            "name": "Check answer button",
+            "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
+            "type": "boolean",
+            "required": false,
+            "default": false
+          },
+          "text": {
+            "name": "Template text for the cloze question",
+            "description": "The template text for the cloze question",
+            "type": "editor",
+            "required": true,
+            "default": "This is the default"
+          },
+          "valid_response" : {
+            "type" : "question",
+            "name" : "Set correct answer(s)",
+            "description" : "Correct answer for the question",
+            "white_list" : ["text"]
+          }
+        }
+      }
+    }
+  ]
+}

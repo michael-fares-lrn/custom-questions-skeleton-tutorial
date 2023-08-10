@@ -53,17 +53,15 @@ export default class Question {
             const responseArea = el.querySelector('.lrn_response_input');
             // split the question.text into an array on space as a delimiter
             // map over it, and insert the words or an input for a {{response}} (which will match the RESPONSE_REGX)
-            const textArray = question.text.split(" ")
-            textArray.forEach(word => {
+            console.log("question", question)
+            question.text.split(" ").forEach(word => {
                 const isBlank = word.match(RESPONSE_REGX)
                 if(isBlank) {
                     responseArea.innerHTML += `<input class="${PREFIX} response-input" type="text"></input>&nbsp;`;
                 } else {
                     responseArea.innerHTML += `${word} `;
                 }
-            });
-
-           
+            });         
 
         });
     }
