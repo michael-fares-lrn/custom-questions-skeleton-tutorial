@@ -25,6 +25,22 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
     <script src="//authorapi.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
+        .response-placeholder {
+            border: 1px dashed red;
+            color: white;
+            background-color: royalblue;
+            margin: 0 0.25em;
+        }
+        .response-placeholder::before {
+            content: url("/letter-r.svg")
+        }
+        /* Hide the custom button from all others but this one */
+        div.lrn-qe-ckeditor-lg:not(.custom-insert-response) .cke_button__custombutton1 {
+            display: none;
+        }
+        .custom-insert-response {
+            line-height: 2.5
+        }
     </style>
 </head>
 <body>
@@ -46,7 +62,17 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
     window.questionEditorApp = LearnosityAuthor.init(activity, {
         readyListener() {
             console.log('ready');
+        
         },
+        customButtons: [{
+            name: 'custombutton1',
+            label: 'Custom Insert Response',
+            icon: '/letter-r.svg',
+            func: function customInsertResponse(attribute, callback) {
+                return callback(
+            `<span class="response-placeholder">{{response}}</span>&nbsp`)
+            }
+        }],
         errorListener(e) {
             console.error(e);
         },

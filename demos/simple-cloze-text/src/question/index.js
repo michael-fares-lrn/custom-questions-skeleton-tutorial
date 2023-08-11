@@ -49,20 +49,38 @@ export default class Question {
             lrnUtils.renderComponent('CheckAnswerButton', el.querySelector(`.${PREFIX}-checkAnswer-wrapper`))
         ]).then(([suggestedAnswersList]) => {
             this.suggestedAnswersList = suggestedAnswersList;
+           
             // select the response area
             const responseArea = el.querySelector('.lrn_response_input');
             // split the question.text into an array on space as a delimiter
             // map over it, and insert the words or an input for a {{response}} (which will match the RESPONSE_REGX)
             console.log("question", question)
-            question.text.split(" ").forEach(word => {
+            const textArray = question.text.split(" ");
+            let count_blanks = 0;
+            textArray.forEach(word => {
                 const isBlank = word.match(RESPONSE_REGX)
                 if(isBlank) {
                     responseArea.innerHTML += `<input class="${PREFIX} response-input" type="text"></input>&nbsp;`;
+                    count_blanks ++
                 } else {
                     responseArea.innerHTML += `${word} `;
                 }
-            });         
-
+            });
+            
+            console.log("the current number of blanks is: ", count_blanks)
+            
+            /** HACK - make sure the valid response array is always the same length as the number of blanks
+             * This seems to work OKAY - but it won't actually change the question JSON
+             * only the quesiton behavior at runtime
+             */
+            
+            if(question.valid_response && Array.isArray(question.valid_response) && question.valid_response.length > count_blanks) {
+                while(question.valid_response.length > count_blanks) {
+                    question.valid_response.pop()
+                    console.log("number of valid responses is", question.valid_response.length)
+                }
+            }
+          
         });
     }
 

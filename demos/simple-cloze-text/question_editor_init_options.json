@@ -14,9 +14,9 @@
         "defaults" : {
           "type": "custom",
           "stimulus": "Fill in the blanks",
-          "valid_response": [],
+          "valid_response": [null, null],
           "score": 1,
-          "text": "Of the Learnosity Golden Path APIs, the {{response}} API delivers assessments, and the {{response}} API delivers reports. The {{response}} API is a backend API that delivers raw Learnosity JSON data.",
+          "text": "Veritatis ab ad facilis atque <span class=\"response-placeholder\">{{response}}</span>&nbsp; officia nulla tempore! Nesciunt quia tenetur officiis, facilis inventore error quidem porro architecto <span class=\"response-placeholder\">{{response}}</span>&nbsp;, nulla perferendis.",
           "js": {
             "question": "/dist/question.js",
             "scorer": "/dist/scorer.js"
