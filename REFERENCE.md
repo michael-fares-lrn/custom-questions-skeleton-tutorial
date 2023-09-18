@@ -16,11 +16,11 @@
 
 ### Now let's get to coding!
 
-## Step 1: define the stimulus of your custom question by editing the [JSON for your custom question](https://github.com/Learnosity/custom-questions-skeleton/blob/c1eb549f37ad54534ee0dc0bfb9cfbf4efac1a3a/demos/custom-question-skeleton/assessment.php#L10) in `assessment.php`  
+## Step 1: define the stimulus of your custom question by editing the [JSON for your custom question](https://github.com/Learnosity/custom-questions-skeleton/blob/c1eb549f37ad54534ee0dc0bfb9cfbf4efac1a3a/demos/custom-question-skeleton/assessment.php#L10) in `question.json`  
 
 
 ```json
-assessment.php:
+question.json:
 ...
 "stimulus": "Which city is located in the US state of Texas?",
 ...
@@ -37,7 +37,7 @@ NOTE: we will refer to this again when building our question UI in `src/question
 
 
 ```json
-assessment.php:
+question.json:
 ...
           "valid_response" : {
               "value" : "1"
@@ -56,7 +56,7 @@ assessment.php:
 ## Step 3: Finally, on the question JSON  in `assessment.php` we will also define the score possible for this particular question:  
 
 ```json
-assessment.php:
+question.json:
 ...
   "score" : 1,
 ...
@@ -584,7 +584,7 @@ The goal of this step is make the custom question we have just developed in step
 
 - This step is broken down into checklist of substeps, each with it's own separate cheat commit along the way
 - For all substeps we will work in the following 2 files only:
-1.  `authoring.php` - This file will control how our custom question is abstracted as an editable and reusable template for authoring that shows up as its own tile on the Author Site or Author API just like a regular Learnosity question type. In this file we will focus <strong>only</strong> on the [`init_options` object for the quesitonEditorAPI instance inside of Author API - located on this line](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L9). (See the Author API initilization documentation on [`config.dependencies.question_editor_api_.init_options` here](https://reference.learnosity.com/author-api/initialization#config_dependencies_question_editor_api) for additional information.)
+1.  `question_editor_init_options.json` - This file will control how our custom question is abstracted as an editable and reusable template for authoring that shows up as its own tile on the Author Site or Author API just like a regular Learnosity question type. In this file we will focus <strong>only</strong> on the [`init_options` object for the quesitonEditorAPI instance inside of Author API - located on this line](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L9). (See the Author API initilization documentation on [`config.dependencies.question_editor_api_.init_options` here](https://reference.learnosity.com/author-api/initialization#config_dependencies_question_editor_api) for additional information.)
 2. `authoring_custom_layout.html` - This file will define the layout of the question editor pane for our custom question.
 
 #### Step 14.1 - getting a lay of the land
@@ -625,7 +625,7 @@ Instead of having our tile generically called "Custom Question - Skeleton" and g
 ### Step 14.2 Creating a custom menu category for our custom question tile
  First, let's create a menu category called "Company X Custom Questions" that we will group this custom question under, and any future custom questions we might develop. 
 
-- [ ] In `authoring.php` directly under [this line](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L9) we will add the following array called `"question_type_groups"`, where we can place an object to indicate our preferred menu category `"name"` ("Company X Custom Questions") in this example, and a unique`"reference"` we can use to place individual custom questions in this group. (We'll use the reference "company_x_custom_questions" in this example).
+- [ ] In `authoring.php (via question_editor_init_options.json)` directly under [this line](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L9) we will add the following array called `"question_type_groups"`, where we can place an object to indicate our preferred menu category `"name"` ("Company X Custom Questions") in this example, and a unique`"reference"` we can use to place individual custom questions in this group. (We'll use the reference "company_x_custom_questions" in this example).
 
 ```json
  "question_type_groups": [
@@ -709,7 +709,7 @@ We are going to cover how to do this in the final two substeps (14.5 and 14.6).
 
 First, let's make it so that our authors can edit the choices.
 
-- [ ] In `authoring.php`, inside of the `"properties"` object, add the following object, which defines the type and behavior of `"choices"` in our editor schema.
+- [ ] In `authoring.php (via quesition_editor_init_options.json)`, inside of the `"properties"` object, add the following object, which defines the type and behavior of `"choices"` in our editor schema.
 
 ```json
 "choices": {
@@ -754,7 +754,7 @@ For additional detail see our help article [Adding a Custom Layout for a Questio
 
 Finally, let's make it so that our authors can edit the score of our custom question, in case they wish to assign a point value other than "1" for this question.
 
- - [ ] Once again, in `authoring.php`, inside of the `"properties"` object, add the following object, which defines the type and behavior of `"score"` in our editor schema for this custom question.
+ - [ ] Once again, in `authoring.php (via question_editor_init_options.json)`, inside of the `"properties"` object, add the following object, which defines the type and behavior of `"score"` in our editor schema for this custom question.
 
  ```json
 "score" : {
