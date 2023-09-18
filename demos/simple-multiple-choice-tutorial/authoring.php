@@ -1,101 +1,14 @@
 <?php
 include_once '../config.php';
 
+$init_options = file_get_contents('./question_editor_init_options.json');
+
 $request = '
 {
   "config": {
     "dependencies": {
       "question_editor_api": {
-        "init_options": {
-          "question_type_groups": [
-            {
-                "name": "Company X Custom Questions",
-                "reference": "company_x_custom_questions"
-            }
-          ],
-          "question_type_templates": {
-            "custom_question_skeleton": [
-              {
-                "name": "Custom Simple Multiple Choice Question - AUTHORING EXAMPLE",
-                "description": "Demonstrates an example of setting up authoring for a custom question type",
-                "group_reference": "company_x_custom_questions",
-                "defaults": {
-                  "type": "custom",
-                  "stimulus": "[Your question here]",
-                  "valid_response" : {
-                      "value" : ""
-                  },
-                  "choices" : [
-                      {"label": "CHOICE A", "value": "0"},
-                      {"label": "CHOICE B", "value": "1"},
-                      {"label": "CHOICE C", "value": "2"},
-                      {"label": "CHOICE D", "value": "3"}
-                  ],
-                  "score" : 1,
-                  "js": {
-                    "question": "/dist/question.js",
-                    "scorer": "/dist/scorer.js"
-                  },
-                  "css": "/dist/question.css",
-                  "instant_feedback": true
-                }
-              }
-            ]
-          },
-          "custom_question_types": [
-            {
-              "custom_type": "custom_question_skeleton",
-              "type": "custom",
-              "name": "Custom Question - Skeleton",
-              "editor_layout": "/dist/authoring_custom_layout.html",
-              "js": {
-                "question": "/dist/question.js",
-                "scorer": "/dist/scorer.js"
-              },
-              "css": "/dist/question.css",
-              "version": "v1.0.0",
-              "editor_schema": {
-                "hidden_question": false,
-                "properties": {
-                    "instant_feedback": {
-                      "name": "Check answer button",
-                      "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
-                      "type": "boolean",
-                      "required": false,
-                      "default": false
-                    },
-                    "choices": {
-                      "name": "Define the choices here",
-                      "description": "",
-                      "type": "array",
-                      "required": true,
-                      "items": {
-                        "type": "object",
-                        "attributes": {
-                          "label": {
-                            "type": "editor"
-                          }
-                        }
-                      }
-                    },
-                    "valid_response" : {
-                      "type" : "question",
-                      "name" : "Set the correct answer",
-                      "description" : "Correct answer for the question",
-                      "required": true,
-                      "white_list" : ["value", "choices"]
-                    },
-                    "score" : {
-                      "type" : "number",
-                      "name": "Score",
-                      "description": "Score for a correct answer.",
-                      "required": true
-                    }
-                }
-              }
-            }
-          ]
-        }
+        "init_options": '.$init_options.'
       }
     }
   }
@@ -109,7 +22,7 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
 <head>
     <meta charset="UTF-8">
     <title>Author API - Skeleton</title>
-    <script src="//authorapi.staging.learnosity.com"></script>
+    <script src="//authorapi.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
     </style>

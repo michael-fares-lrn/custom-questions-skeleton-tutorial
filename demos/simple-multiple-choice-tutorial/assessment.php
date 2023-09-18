@@ -1,36 +1,22 @@
 <?php
 include_once '../config.php';
 
+// import the question json file where clients have created their question json
+$questionJson = file_get_contents('./question.json');
 $responseId = "custom-$sessionId";
+// pull the question json into the questions array below.
 $request = '{
     "state": "' . $state . '",
     "session_id": "' . $sessionId . '",
     "showCorrectAnswers": true,
     "questions": [
-        {
-          "response_id": "' . $responseId . '",
-          "type": "custom",
-          "stimulus": "Which city is located in the US state of Texas?",
-          "valid_response" : {
-            "value" : "1"
-        },
-        "choices" : [
-          {"label": "Denver", "value": "0"},
-          {"label": "Houston", "value": "1"},
-          {"label": "Chicago", "value": "2"},
-          {"label": "New York", "value": "3"}
-        ],
-         "score" : 1,
-          "js": {
-            "question": "/dist/question.js",
-            "scorer": "/dist/scorer.js"
-          },
-          "css": "/dist/question.css",
-          "instant_feedback": true
-        }
+        '.$questionJson.'
     ]
 }';
+
 $requestData = json_decode($request, true);
+// add the response id to the request data after it has been transformed to a php array.
+$requestData['questions'][0]['response_id'] = $responseId;
 
 $signedRequest = signAssessmentRequest($requestData);
 
@@ -40,7 +26,7 @@ $signedRequest = signAssessmentRequest($requestData);
 <head>
     <meta charset="UTF-8">
     <title>Questions API - Skeleton</title>
-    <script src="//questions.staging.learnosity.com"></script>
+    <script src="//questions.learnosity.com"></script>
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
     </style>
