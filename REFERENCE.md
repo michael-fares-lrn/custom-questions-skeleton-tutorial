@@ -13,10 +13,9 @@
 - open [localhost:12345/assessment.php](https://localhost:12345/assessment.php) in the broswer. 
 - for additional info see [Starting your Custom Question project](https://help.learnosity.com/hc/en-us/articles/4414363148561-Getting-Started-with-Custom-Questions-and-Features#starting-your-custom-question-project)
 
-
 ### Now let's get to coding!
 
-## Step 1: define the stimulus of your custom question by editing the [JSON for your custom question](https://github.com/Learnosity/custom-questions-skeleton/blob/c1eb549f37ad54534ee0dc0bfb9cfbf4efac1a3a/demos/custom-question-skeleton/assessment.php#L10) in `question.json`  
+## Step 1: define the stimulus of your custom question by editing the [JSON for your custom question](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/question.json#L4) in `question.json`  
 
 
 ```json
@@ -25,9 +24,9 @@ question.json:
 "stimulus": "Which city is located in the US state of Texas?",
 ...
 ```  
-:rocket: [Step 1 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/commit/9534618e63b9be95d4b62fa7436a06922f4ee92e)
+:rocket: [Step 1 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/blob/main/demos/simple-multiple-choice-tutorial/question.json#L3)
 
-## Step 2: On the same question JSON  in `assessment.php` we will also define two additional key properties:
+## Step 2: On the same question JSON  in `question.json` we will also define two additional key properties:
 1. `"choices"`: the list of possible choices for this particular question
 AND
 2. `"valid_response"`: this property specifies the correct answer for the question and is required
@@ -51,9 +50,9 @@ question.json:
 ...
 ```  
 
-:rocket: [Step 2 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/commit/7ce4496a501d5d1feb9623702fd6ec7c063613ef)
+:rocket: [Step 2 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/blob/main/demos/simple-multiple-choice-tutorial/question.json#L4-L24)
 
-## Step 3: Finally, on the question JSON  in `assessment.php` we will also define the score possible for this particular question:  
+## Step 3: Finally, on the question JSON  in `question.json` we will also define the score possible for this particular question:  
 
 ```json
 question.json:
@@ -63,7 +62,7 @@ question.json:
 ```  
 NOTE: we will refer to the `"score"` property again when coding the scoring logic for our question in `src/scorer/index.js`  
 
-:rocket: [Step 3 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/commit/87e3460a5559a2b2ef6cab0c35c9c8e5b31842fb)
+:rocket: [Step 3 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/blob/main/demos/simple-multiple-choice-tutorial/question.json#L25)
 
 ## Step 4: Write the UI rendering logic for your custom question based on its JSON definition. 
 For this example we will write a component function in a separate file called `renderUI.js`. We'll place the file inside the `src/quesiton` folder. We will then export the function for use in `src/question/index.js`.  
@@ -429,10 +428,6 @@ If the above was successful, then the resulting UI should look like this when pr
 
 ![Step 10 Resume and Review States](https://raw.githubusercontent.com/michael-fares-lrn/custom-questions-skeleton-tutorial/main/images/resumereview.gif "Updating the UI with the saved answer in resume")  
 
-
-
-
-
 And like this when doing the same but choosing to enter "review" state:    
 
 
@@ -584,7 +579,7 @@ The goal of this step is make the custom question we have just developed in step
 
 - This step is broken down into checklist of substeps, each with it's own separate cheat commit along the way
 - For all substeps we will work in the following 2 files only:
-1.  `question_editor_init_options.json` - This file will control how our custom question is abstracted as an editable and reusable template for authoring that shows up as its own tile on the Author Site or Author API just like a regular Learnosity question type. In this file we will focus <strong>only</strong> on the [`init_options` object for the quesitonEditorAPI instance inside of Author API - located on this line](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L9). (See the Author API initilization documentation on [`config.dependencies.question_editor_api_.init_options` here](https://reference.learnosity.com/author-api/initialization#config_dependencies_question_editor_api) for additional information.)
+1.  `question_editor_init_options.json` - This file will control how our custom question is abstracted as an editable and reusable template for authoring that shows up as its own tile on the Author Site or Author API just like a regular Learnosity question type.  This file we focuses <strong>only</strong> on the [`init_options` object for the quesitonEditorAPI instance inside of Author API - ingested into the Author API initialization object on this line in authoring.php](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/blob/main/demos/simple-multiple-choice-tutorial/authoring.php#L11). (See the Author API initilization documentation on [`config.dependencies.question_editor_api_.init_options` here](https://reference.learnosity.com/author-api/initialization#config_dependencies_question_editor_api) for additional information.)
 2. `authoring_custom_layout.html` - This file will define the layout of the question editor pane for our custom question.
 
 #### Step 14.1 - getting a lay of the land
@@ -618,14 +613,14 @@ Note that the Source JSON there:
     "version": "v1.0.0"
 }
 ```
-Is the exact same as the JSON that comes predefined in the [`"defaults"` object in `assessment.php` here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L16-L25)
+Is the exact same as the JSON that comes predefined in the [`"defaults"` object in `question_editor_init_options.json` here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/question_editor_init_options.json#L8-L16)
 
 Instead of having our tile generically called "Custom Question - Skeleton" and grouped under the generic "other" category in the left hand menu that we need to click all the way through to reach our authoring workflow, let's create a custom menu category into which we can place and rename the tile for our question for easy discovery by our authors. The next two substeps (14.2 and 14.3) will cover this workflow.
 
 ### Step 14.2 Creating a custom menu category for our custom question tile
  First, let's create a menu category called "Company X Custom Questions" that we will group this custom question under, and any future custom questions we might develop. 
 
-- [ ] In `authoring.php (via question_editor_init_options.json)` directly under [this line](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L9) we will add the following array called `"question_type_groups"`, where we can place an object to indicate our preferred menu category `"name"` ("Company X Custom Questions") in this example, and a unique`"reference"` we can use to place individual custom questions in this group. (We'll use the reference "company_x_custom_questions" in this example).
+- [ ] In `question_editor_init_options.json` directly above [this line](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/question_editor_init_options.json#L2) we will add the following array called `"question_type_groups"`, where we can place an object to indicate our preferred menu category `"name"` ("Company X Custom Questions") in this example, and a unique`"reference"` we can use to place individual custom questions in this group. (We'll use the reference "company_x_custom_questions" in this example).
 
 ```json
  "question_type_groups": [
@@ -635,17 +630,17 @@ Instead of having our tile generically called "Custom Question - Skeleton" and g
             }
           ],
 ```
-- [ ] Next, in the `question_type_templates` object which contains the authoring template for the custom question skeleton we are using here, we need to change the `"group_reference"` key [here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L15) to `"company_x_custom_questions"` so that it matches the `"reference"` key we specified on the object above. 
+- [ ] Next, in the `question_type_templates` object which contains the authoring template for the custom question skeleton we are using here, we need to change the `"group_reference"` key [here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/question_editor_init_options.json#L7) to `"company_x_custom_questions"` so that it matches the `"reference"` key we specified on the object above. 
 
 If successful, then you should now see the following when looking at `authoring.php` in the broswer:  
 
 
 ![Custom category](https://raw.githubusercontent.com/michael-fares-lrn/custom-questions-skeleton-tutorial/main/images/Authoring5.gif "Creating a custom menu category for our custom question tile")   
 
-:rocket: [Step 14.2 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/commit/51844df821db1dea733c7b281bc32063d9028673)
+:rocket: [Step 14.2 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/blob/main/demos/simple-multiple-choice-tutorial/question_editor_init_options.json#L1-L13)
 
 ### Step 14.3 Renaming our custom question tile and customizing its description
-We can easily rename our custom quesiton tile and change its description by [changing the values of the `"name"` and `"description"` keys located here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L13-L14), respectively.
+We can easily rename our custom quesiton tile and change its description by [changing the values of the `"name"` and `"description"` keys located here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/question_editor_init_options.json#L5-L6), respectively.
 
 In this example, we've changed them to the following to suit the theme of our tutorial:
 
@@ -661,12 +656,12 @@ The resulting UI now looks like this:
 
 ![Custom tile](https://raw.githubusercontent.com/michael-fares-lrn/custom-questions-skeleton-tutorial/main/images/Authoring6.png "Changing the name and description of the custom question tile")   
 
-:rocket: [Step 14.3 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/commit/ab662b59ccfe760facaa0fff70f24941b2135744)
+:rocket: [Step 14.3 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/blob/main/demos/simple-multiple-choice-tutorial/question_editor_init_options.json#L11-L12)
 
 ### Step 14.4 creating a default authoring start tempate for this question type based on its JSON
 Now that we've categorized and named our custom question tile to appear on the Author Site or Author API per our business logic and the needs of our future authors, let's actually create the default JSON template for a "blank" Simple Multiple Choice Custom question that can be authored.  
 
-We will do so by using the [`"defaults"` object here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L16) and adding to it generic placeholder versions of the same properties we added to our custom question JSON in steps 1 - 3 of this tutorial: `"stimulus", "valid_response"`, `"choices"`,  `"score"`:
+We will do so by using the [`"defaults"` object here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/question_editor_init_options.json#L8) and adding to it generic placeholder versions of the same properties we added to our custom question JSON in steps 1 - 3 of this tutorial: `"stimulus", "valid_response"`, `"choices"`,  `"score"`:
 
 ```json
 "defaults": {
@@ -685,7 +680,7 @@ We will do so by using the [`"defaults"` object here](https://github.com/Learnos
     ...
 }
 ```
-:rocket: [Step 14.4 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/commit/7f4545f6b863eac6a15a30264d9f2b2abe66041c)
+:rocket: [Step 14.4 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/blob/main/demos/simple-multiple-choice-tutorial/question_editor_init_options.json#L16-L38)
 
 Step 14.4 Final Notes:  
 
@@ -699,7 +694,7 @@ But wait? How come we can only edit the `"stimulus"` portion of our question JSO
 
 How can we also enable editing the `"valid_response"`, `"choices"`, and `"score"` for a new Simple Custom Multiple Choice question?
 
-The answer is that we first need add and define these properties on the [`"editor_schema"` `"properties`" object here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring.php#L41-L43). 
+The answer is that we first need add and define these properties on the [`"editor_schema"` `"properties`" object here](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/question_editor_init_options.json#L35). 
 
 We next need to add the relevant HTML hooks to `authoring_custom_layout.html` to make a Learnosity UI editing widget available for that property in the question editor, [just like the HTML hook for the "stimulus" that is already present in the file](https://github.com/Learnosity/custom-questions-skeleton/blob/master/demos/custom-question-skeleton/authoring_custom_layout.html#L2-L3) by default.
 
@@ -709,7 +704,7 @@ We are going to cover how to do this in the final two substeps (14.5 and 14.6).
 
 First, let's make it so that our authors can edit the choices.
 
-- [ ] In `authoring.php (via quesition_editor_init_options.json)`, inside of the `"properties"` object, add the following object, which defines the type and behavior of `"choices"` in our editor schema.
+- [ ] In `via quesition_editor_init_options.json`, inside of the `"properties"` object, add the following object, which defines the type and behavior of `"choices"` in our editor schema.
 
 ```json
 "choices": {
@@ -769,7 +764,7 @@ Here, we've specified that the score property that our authors can edit is of ty
 
 For additional detail see our help article [Adding a Custom Layout for a Question Type](https://help.learnosity.com/hc/en-us/articles/360000755258-Adding-a-Custom-Editor-Layout-for-a-Question-Type) and note particularly "number" under "type".
 
-:rocket: [Step 14.5 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/commit/8accacd22de2dbb1a3df6e2c3dcd5ac74d7858bf)
+:rocket: [Step 14.5 Cheat Commit](https://github.com/michael-fares-lrn/custom-questions-skeleton-tutorial/blob/main/demos/simple-multiple-choice-tutorial/question_editor_init_options.json#L71-L100)
 
 ### Step 14.6 hooking our editor schema up to the question editor UI using `authoring_custom_layout.html`
 
