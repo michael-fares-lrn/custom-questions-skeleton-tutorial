@@ -9,10 +9,10 @@
     "your_question_template_reference": [
       {
         "name": "My Custom Question",
-        "description": "A custom question for testing POCs",
+        "description": "An example custom question setting multipe values in valid_response",
         "group_reference": "test_custom_q",
         "defaults": {
-          "valid_response": null,
+          "valid_response": [],
           "type": "custom",
           "stimulus": "This is stimulus",
           "js": {
@@ -41,17 +41,68 @@
         "hidden_question": false,
         "properties": {
           "valid_response": {
-            "type": "object",
+            "type": "array",
             "name": "Valid Response",
             "description": "Correct answer to the question.",
-            "required": true
-          },
-          "instant_feedback": {
-            "name": "Check answer button",
-            "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
-            "type": "boolean",
-            "required": false,
-            "default": false
+            "required": true,
+            "items": {
+              "type": "object",
+              "attributes": {
+                "index": {
+                  "type": "number",
+                  "required": true
+                },
+                "value": {
+                  "type": "object",
+                  "attributes": {
+                    "accepted-formula": {
+                      "type": "object",
+                      "attributes": {
+                        "value": {
+                          "type": "string",
+                          "required": true
+                        },
+                        "points": {
+                          "type": "number",
+                          "required": true
+                        }
+                      }
+                    },
+                    "accepted-value": {
+                      "type": "object",
+                      "attributes": {
+                        "value": {
+                          "type": "string",
+                          "required": true
+                        },
+                        "points": {
+                          "type": "number",
+                          "required": true
+                        }
+                      }
+                    },
+                    "cell-name": {
+                      "type": "object",
+                      "attributes": {
+                        "value": {
+                          "type": "string",
+                          "required": true
+                        }
+                      }
+                    },
+                    "worksheet-name": {
+                      "type": "object",
+                      "attributes": {
+                        "value": {
+                          "type": "string",
+                          "required": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

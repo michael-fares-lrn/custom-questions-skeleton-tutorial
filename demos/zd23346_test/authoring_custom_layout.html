@@ -2,20 +2,47 @@
     <span data-lrn-qe-label="stimulus"></span>
     <span data-lrn-qe-input="stimulus" class="lrn-qe-ckeditor-lg"></span>
 
-    <h4 class="lrn-qe-heading" data-lrn-qe-adv-toggle>
-        <button type="button" class="lrn-qe-form-label lrn-qe-margin-top-none lrn-qe-more-options" data-lrn-qe-section="more_options.heading">
-            <span class="lrn-qe-i-arrow lrn-qe-inline-block" data-lrn-qe-section="more_options.toggle"></span>
-            <span class="lrn-qe-inline-block lrn-qe-text-bold">
-                <label class="lrn-qe-label lrn-qe-form-label-name" data-lrn-qe-i18n-label="heading.moreOptions" value="More options"></label>
-            </span>
-        </button>
-    </h4>
-    <div data-lrn-qe-adv-content data-lrn-qe-section="more_options.content">
-        <div class="lrn-qe-row-flex" data-lrn-qe-layout-wrapper>
-            <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
-                <span data-lrn-qe-input="instant_feedback" class="lrn-qe-inline-block"></span>
-                <span data-lrn-qe-label="instant_feedback" class="lrn-qe-inline-block"></span>
+    <span class="lrn-qe-text-bold" data-lrn-qe-label="valid_response"></span>
+    <div data-lrn-qe-loop="valid_response[*]">
+        <div class="lrn-qe-row-flex">
+            <div class="lrn-qe-col-xs-4" data-lrn-qe-layout-wrapper>
+                <span class="lrn-qe-text-bold">Index</span>
+                <span data-lrn-qe-input="valid_response[*].index"></span>
+            </div>
+            <div class="lrn-qe-col-xs-4" data-lrn-qe-layout-wrapper>
+                <span class="lrn-qe-text-bold">Accepted Formula:</span>
+                <span data-lrn-qe-input="valid_response[*].value.accepted-formula.value"></span>
+                <span class="lrn-qe-text-bold">Points:</span>
+                <span data-lrn-qe-input="valid_response[*].value.accepted-formula.points"></span>
+            </div>
+            <div class="lrn-qe-col-xs-4" data-lrn-qe-layout-wrapper>
+                <span class="lrn-qe-text-bold">Accepted Value:</span>
+                <span data-lrn-qe-input="valid_response[*].value.accepted-value.value"></span>
+                <span class="lrn-qe-text-bold">Points:</span>
+                <span data-lrn-qe-input="valid_response[*].value.accepted-value.points"></span>
+            </div>
+            <div class="lrn-qe-col-xs-4" data-lrn-qe-layout-wrapper>
+                <span class="lrn-qe-text-bold">Cell Name:</span>
+                <span data-lrn-qe-input="valid_response[*].value.cell-name.value"></span>
+            </div>
+            <div class="lrn-qe-col-xs-4" data-lrn-qe-layout-wrapper>
+                <span class="lrn-qe-text-bold">Worksheet Name:</span>
+                <span data-lrn-qe-input="valid_response[*].value.worksheet-name.value"></span>
+            </div>
+            <div class="lrn-qe-col-xs-4 lrn-qe-margin-top-md" data-lrn-qe-layout-wrapper>
+                <span data-lrn-qe-action-remove="valid_response[*]"></span>
             </div>
         </div>
+        <div class="lrn-qe-divider"></div>
     </div>
+    <span data-lrn-qe-action-add="valid_response"></span>  
 </div>
+
+
+
+
+
+
+
+    
+

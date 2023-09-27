@@ -1,0 +1,21 @@
+[
+    {
+        "index": 1,
+        "value": {
+            "accepted-formula": {
+                "value": "test-formula",
+                "points": 0
+            },
+            "accepted-value": {
+                "value": "test-value",
+                "points": 4
+            },
+            "cell-name": {
+                "value": "test-cell"
+            },
+            "worksheet-name": {
+                "value": "test-worksheet"
+            }
+        }
+    }
+]
