@@ -1,0 +1,60 @@
+{
+  "question_type_groups": [
+    {
+      "name": "TEST CUSTOM Q",
+      "reference": "test_custom_q"
+    }
+  ],
+  "question_type_templates": {
+    "your_question_template_reference": [
+      {
+        "name": "My Custom Question",
+        "description": "A custom question for testing POCs",
+        "group_reference": "test_custom_q",
+        "defaults": {
+          "valid_response": null,
+          "type": "custom",
+          "stimulus": "This is stimulus",
+          "js": {
+            "question": "/dist/question.js",
+            "scorer": "/dist/scorer.js"
+          },
+          "css": "/dist/question.css",
+          "instant_feedback": true
+        }
+      }
+    ]
+  },
+  "custom_question_types": [
+    {
+      "custom_type": "your_question_template_reference",
+      "type": "custom",
+      "name": "My Custom Question",
+      "editor_layout": "/dist/authoring_custom_layout.html",
+      "js": {
+        "question": "/dist/question.js",
+        "scorer": "/dist/scorer.js"
+      },
+      "css": "/dist/question.css",
+      "version": "v1.0.0",
+      "editor_schema": {
+        "hidden_question": false,
+        "properties": {
+          "valid_response": {
+            "type": "object",
+            "name": "Valid Response",
+            "description": "Correct answer to the question.",
+            "required": true
+          },
+          "instant_feedback": {
+            "name": "Check answer button",
+            "description": "Enables the Check Answer button underneath the question, which will provide the student with instant feedback on their response(s).",
+            "type": "boolean",
+            "required": false,
+            "default": false
+          }
+        }
+      }
+    }
+  ]
+}
