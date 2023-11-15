@@ -10,17 +10,25 @@ automatically for you by webpack when you build the production version of your q
     justify-content: center;
     align-items: center;
 }
+.container.disabled {
+    cursor: not-allowed;
+}
+.container.disabled path.handle:focus {
+    outline: none;
+}
+
 /* change the font size */
 .axis text,
 .slider text {
     font-size: 18px;
     stroke: black;
+    user-select: none;
 }
 path.handle {
     cursor: pointer;
     stroke: black;
 }
-p#value {
+p.value {
     background-color: royalblue;
     color: white;
     padding: 2rem;

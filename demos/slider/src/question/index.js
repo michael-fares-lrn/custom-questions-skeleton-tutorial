@@ -15,22 +15,17 @@ export default class Question {
 
              if (init.state === 'resume') {
         
-
-                // EXAMPLE implementation:
-                // if(init.response) {
-                //     // This example assumes a simple DOM input for the custom question's UI, and updates its value to the value of the saved response upon resume. 
-                //     document.getElementById('my-input').value = init.response.value;
-                // }
+                if(init.response) {
+                    console.log('init.response in reusme', init.response)
+                    this.slider.value(init.response);
+                }
             }
 
             if (init.state === 'review') {
-            
-
-                // EXAMPLE implementation:
-                // if(init.response) {
-                //     // This example assumes a simple DOM input for the custom questions UI, and updates its value to the value of the submitted response upon review. 
-                //     document.getElementById('my-input').value = init.response.value;
-                // }
+                if(init.response) {
+                    console.log('init.response in reusme', init.response)
+                    this.slider.value(init.response);
+                }
                 init.getFacade().disable();
             }
 
@@ -49,8 +44,8 @@ export default class Question {
             <div class="${PREFIX} lrn-response-validation-wrapper">
                 <div class="lrn_response_input">
                 <div class="container">
-                    <div id="slider"></div>
-                    <p id="value">0</p>
+                    <div class="slider"></div>
+                    <p class="value">0</p>
                 </div>
                 </div>            
                 <div class="${PREFIX}-checkAnswer-wrapper"></div>
@@ -75,34 +70,36 @@ export default class Question {
                     .displayValue(false)
                     .fill('royalblue')
                     
-                this.slider = slider
+            this.slider = slider
+            this.sliderHook = el.querySelector('div.slider')
+            this.sliderValue = el.querySelector('p.value')
 
-                d3.select('#slider')
-                    .append('svg')
-                    .attr('width', 800)
-                    .attr('height', 200)
-                    .append('g')
-                    .attr('transform', 'translate(80,80)')
-                    .call(this.slider);
-                    
-                // move the slider up
-                // reposition the thickened line strokes
-                d3.select('path.handle')
-                    .attr('transform', 'translate(-65,-120) scale(1.2)')
-                    .attr('fill', 'black')
+            d3.select(this.sliderHook)
+                .append('svg')
+                .attr('width', 800)
+                .attr('height', 200)
+                .append('g')
+                .attr('transform', 'translate(80,80)')
+                .call(this.slider);
+                
+            // move the slider up
+            // reposition the thickened line strokes
+            d3.select('path.handle')
+                .attr('transform', 'translate(-65,-120) scale(1.2)')
+                .attr('fill', 'black')
 
-                d3.select('line.track-fill')
-                    .attr('transform','translate(-25,0)')
-                d3.select('line.track-inset')
-                    .attr('transform','translate(-25,0)')
-                    .attr('x2', '600')
-                d3.select('line.track')
-                    .attr('transform','translate(-25,0)')
-                    .attr('x2', '600')
+            d3.select('line.track-fill')
+                .attr('transform','translate(-25,0)')
+            d3.select('line.track-inset')
+                .attr('transform','translate(-25,0)')
+                .attr('x2', '600')
+            d3.select('line.track')
+                .attr('transform','translate(-25,0)')
+                .attr('x2', '600')
 
-                // axis
-                d3.select('g.axis')
-                    .attr('transform', 'translate(-5,7)')
+            // axis
+            d3.select('g.axis')
+                .attr('transform', 'translate(-5,7)')
            
         });
     }
@@ -119,6 +116,12 @@ export default class Question {
         const facade = init.getFacade();
 
         facade.disable = () => {
+            el.querySelector('div.container').classList.add('disabled')
+            this.slider.on('onchange',() => init.response && this.slider.value(init.response))
+            d3.select('path.handle')
+            .attr('style','cursor:not-allowed;')
+            .attr('focusable', false)
+            
             // TODO: Requires implementation
             /**
              * The purpose of this method is to prevent learner interaction with your question's UI.
@@ -189,8 +192,6 @@ export default class Question {
                           
         };
         facade.resetValidationUI = () => {
-            
-
             el.querySelector(".lrn_response_input").classList.remove("lrn_correct");
             el.querySelector(".lrn_response_input").classList.remove("lrn_incorrect");
             this.suggestedAnswersList.reset()
@@ -204,7 +205,7 @@ export default class Question {
         let response = 0;
         this.slider.on('onchange', (val) => {
             console.log("slider value is", val)
-            d3.select('#value').text(val);
+            d3.select(this.sliderValue).text(val);
             response = val;
             events.trigger('changed', response)
             console.log(facade.getResponse())
@@ -215,20 +216,12 @@ export default class Question {
         
      
         events.on('validate', options => {
-            // OPTIONAL Step 1: 
 
             console.log(facade.isValid())
          
             facade.showValidationUI()
-
-            // OPTIONAL Step 2: 
-            // If you want to display the correct answer to the learner when they press the Check Answer button,
-            // then you should leverage the suggestedAnswersList.setAnswers() method. Please see the example implementation below for full details.
-
-            // EXAMPLE Implementation 
             
             if (!facade.isValid() && options.showCorrectAnswers) {
-                // pass a string if there is a single correct answer 
         
                  this.suggestedAnswersList.setAnswers(init.question.valid_response);
             }
