@@ -14,19 +14,22 @@ export default class Question {
             this.handleEvents();
 
              if (init.state === 'resume') {
-        
+              
                 if(init.response) {
                     console.log('init.response in reusme', init.response)
                     this.slider.value(init.response);
+                    
                 }
             }
 
             if (init.state === 'review') {
+    
                 if(init.response) {
-                    console.log('init.response in reusme', init.response)
+                    console.log('init.response in review', init.response)
                     this.slider.value(init.response);
+                    init.getFacade().disable();
                 }
-                init.getFacade().disable();
+                
             }
 
             
@@ -73,10 +76,11 @@ export default class Question {
             this.slider = slider
             this.sliderHook = el.querySelector('div.slider')
             this.sliderValue = el.querySelector('p.value')
+            
 
             d3.select(this.sliderHook)
                 .append('svg')
-                .attr('width', 800)
+                .attr('width', 700)
                 .attr('height', 200)
                 .append('g')
                 .attr('transform', 'translate(80,80)')
@@ -84,7 +88,8 @@ export default class Question {
                 
             // move the slider up
             // reposition the thickened line strokes
-            d3.select('path.handle')
+
+            d3.selectAll('path.handle')
                 .attr('transform', 'translate(-65,-120) scale(1.2)')
                 .attr('fill', 'black')
 
@@ -116,11 +121,7 @@ export default class Question {
         const facade = init.getFacade();
 
         facade.disable = () => {
-            el.querySelector('div.container').classList.add('disabled')
-            this.slider.on('onchange',() => init.response && this.slider.value(init.response))
-            d3.select('path.handle')
-            .attr('style','cursor:not-allowed;')
-            .attr('focusable', false)
+                
             
             // TODO: Requires implementation
             /**
