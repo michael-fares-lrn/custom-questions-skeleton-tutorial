@@ -4,15 +4,16 @@ export default class Scorer {
         this.response = response;
     }
 
-    /**
+  /**
      * Check if the current question's response is valid or not
      * (Required)
      * @returns {boolean}
      */
-    isValid() {
-        // TODO: Requires implementation
+   isValid() {
+        console.log("this.question.valid_response", this.question.valid_response)
+        console.log("this.response", this.response)
 
-        return false;
+        return this.question.valid_response && this.response && this.response === this.question.valid_response
     }
 
     /**
@@ -24,26 +25,19 @@ export default class Scorer {
      * @returns {{}|null}
      */
     validateIndividualResponses() {
-        // TODO: Requires implementation
-        return null;
+        return this.isValid();
     }
 
     /**
      * Returns the score of the stored response
      * @returns {number|null}
      */
-    score() {
-        // TODO: Requires implementation
-        return 0;
+     score() {
+        return this.isValid() ? this.maxScore() : 0;
     }
 
-    /**
-     * Returns the possible max score of the stored response
-     * @returns {number}
-     */
     maxScore() {
-        // TODO: Requires implementation
-        return 0;
+        return this.question.score || 0;
     }
 
     /**
@@ -54,6 +48,6 @@ export default class Scorer {
      * @returns {boolean}
      */
     canValidateResponse() {
-        return true;
+        return true
     }
 }

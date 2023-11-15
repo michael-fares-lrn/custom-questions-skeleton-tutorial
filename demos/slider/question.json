@@ -1,11 +1,9 @@
 
 {
     "type": "custom",
-    "stimulus": "Stimulus of the custom question here.",
-    "valid_response": "The valid response of your custom question here can be any data type.",
-    "yourCustomProperty": "yourCustomValue",
-    "yourCustomProperty2": "yourCustomValue2",
-    "yourCustomProperty3": "yourCustomValue3",
+    "stimulus": "<b>Drag the slider to show the number 60</b>",
+    "valid_response": 60,
+    "score": 1,
     "js": {
         "question": "/dist/question.js",
         "scorer": "/dist/scorer.js"
