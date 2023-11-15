@@ -32,8 +32,7 @@ export default class Feature {
         // TODO: Requires implementation
         el.innerHTML = `
                 <div class="lrn_feature_wrapper ${PREFIX}">
-                    Requires implementation - YOUR CONTENT GOES IN HERE
-                    This element is the hook into which your custom feature's UI should be rendered.
+                    <div id="pulled_metadata" hidden></div>
                 </div>            
         `;
 
@@ -50,12 +49,13 @@ export default class Feature {
              *  - you may replace the following lines below with your own code */
             
                 // create a simple h1
-                const myFeatureHeading = document.createElement('h1')
+                const myFeatureHeading = document.createElement('h4')
                 myFeatureHeading.classList.add('my-custom-feature-heading')
                 // add the text given for our custom feature JSON's example_custom_property in feature.json
-                myFeatureHeading.innerHTML = feature.example_custom_property;
+                myFeatureHeading.innerHTML = feature.my_metadata;
                 // append the h1 to the custom feature wrapper hook element
                 el.querySelector('.lrn_feature_wrapper').appendChild(myFeatureHeading)
+                el.querySelector('#pulled_metadata').innerHTML = "test metadata"
         });
     }
 

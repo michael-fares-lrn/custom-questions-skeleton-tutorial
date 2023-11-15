@@ -29,10 +29,10 @@
                     ],
                     "score" : 1,
                     "js": {
-                      "question": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.js",
-                      "scorer": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/scorer.js"
+                      "question": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/question.js",
+                      "scorer": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/scorer.js"
                     },
-                    "css": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.css",
+                    "css": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/question.css",
                     "instant_feedback": true
                   }
                 }
@@ -43,12 +43,12 @@
                 "custom_type": "custom_mcq",
                 "type": "custom",
                 "name": "Custom Question - MCQ",
-                "editor_layout": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/authoring_custom_layout.html",
+                "editor_layout": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/authoring_custom_layout.html",
                 "js": {
-                  "question": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.js",
-                  "scorer": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/scorer.js"
+                  "question": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/question.js",
+                  "scorer": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/scorer.js"
                 },
-                "css": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.css",
+                "css": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/question.css",
                 "version": "v1.0.0",
                 "editor_schema": {
                   "hidden_question": false,

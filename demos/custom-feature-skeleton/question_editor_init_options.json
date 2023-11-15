@@ -10,12 +10,12 @@
           "editor_schema": {
              "hidden_question": false,
              "properties": {
-                "example_custom_property": {
-                   "name": "Text to be displayed:",
-                   "description": "The text to appear on the custom feature",
+                "my_metadata": {
+                   "name": "Media asset metadata:",
+                   "description": "Example description",
                    "type": "string",
                    "required": true,
-                   "default": "Hi there! I am a basic custom feature! You can change my text by editing to the right!"
+                   "default": "My metadata example value"
                 }
              }
           }

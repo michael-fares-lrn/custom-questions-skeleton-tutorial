@@ -46,6 +46,15 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
     window.authorApp = LearnosityAuthor.init(activity, {
         readyListener() {
             console.log('ready');
+
+        // window.authorApp.on('widgetedit:widget:ready', function () {
+        //      console.log('widgetedit:widget:ready FIRED');
+        //      const inputToDisable = document.querySelector('.disable-wrapper input')
+        //      if(inputToDisable) {
+        //         inputToDisable.disabled = true
+        //      } 
+        // });
+
         },
         errorListener(e) {
             console.error(e);

@@ -17,6 +17,10 @@ export default class Question {
             }
 
             init.events.trigger("ready");
+            const hasCustomError = true;
+            if(hasCustomError) {
+                this.events.trigger('my:custom:error')
+            }
         });
     }
 
@@ -47,29 +51,10 @@ export default class Question {
         ]).then(([suggestedAnswersList]) => {
             this.suggestedAnswersList = suggestedAnswersList;
 
-            renderUI(el, question, response, state);
+            renderUI(el, question, response, state);    
 
-            // Try to access the window object
-            console.log("window from inside custom q render()", window);
 
-            // try to access window.LearnosityItems and window.LearnosityAuthor
-            console.log("window.LearnosityItems from inside custom q render()", window.LearnosityItems);
-            console.log("window.LearnosityAuthor from inside custom q render()", window.LearnosityAuthor);
-            
-            // try to call getCurrentItem() - Items API
-            if(window.LearnosityItems) {
-                console.log("itemsApp.getCurrentItem() inside custom q render()", itemsApp.getCurrentItem());
-            }
-              // try to call authorApp.editorApp() - Author API
-              if(window.LearnosityAuthor) {
-                console.log("authorApp.editorApp() inside custom q render()", authorApp.editorApp());
-            }
-
-            // try to call authorApp.getItem().item.dynamic_content_data - Author API
-            if(window.LearnosityAuthor) {
-                console.log("authorApp.getItem().item.dynamic_content_data, inside custom q render", authorApp.getItem().item.dynamic_content_data);
-            }
-    });
+        });
     }
 
     registerPublicMethods() {
@@ -135,51 +120,12 @@ export default class Question {
                 let responseObject = { value: event.target.value };
 
                 events.trigger("changed", responseObject);
-
-            // When a response is changed:
-
-            // try to call getCurrentItem() if itemsApp IS NOT exposed via items API on the window object
-            if(window.LearnosityItems) {
-                console.log("itemsApp.getCurrentItem() inside of custom q changed event", itemsApp.getCurrentItem());
-            }
-            //  try to call getCurrentItem() if itemsApp IS exposed via items API on the window object
-            console.log("window.itemsApp.getCurrentItem() inside of custom q changed event", window.itemsApp?.getCurrentItem());
-
-              // try to call authorApp.getItem().item.dynamic_content_data - Author API
-              if(window.LearnosityAuthor) {
-                console.log("authorApp.getItem().item.dynamic_content_data, inside custom q changed event", authorApp.getItem().item.dynamic_content_data);
-             }
-
-
+        
 
             });
         });
 
-        events.on("validate", (options) => {
-
-          
-
-            // when check answer is pressed, then try to show the assessment player:
-
-            // accessibility dialog from inside Items API:
-
-            //  if(window.LearnosityItems) {
-            //     console.log("itemsApp.dialogs().accessibility.show()");
-            //     itemsApp.dialogs().accessibility.show()
-            // }
-
-             // try to call authorApp.editorApp().undo() - Author API [To undo the latest change]
-            //  if(window.LearnosityAuthor) {
-            //     console.log("calling authorApp.editorApp().undo()");
-            //     authorApp.editorApp().undo()
-            // }
-
-              // try to call authorApp.getItem().item.dynamic_content_data - Author API
-              if(window.LearnosityAuthor) {
-                console.log("authorApp.getItem().item.dynamic_content_data, inside custom q validate event", authorApp.getItem().item.dynamic_content_data);
-            }
-
-         
+        events.on("validate", (options) => {         
 
             const answerIsCorrect = facade.isValid();
 
@@ -203,5 +149,11 @@ export default class Question {
                 this.suggestedAnswersList.setAnswers(correctAnswer.label);
             }
         });
+
+        events.on('my:custom:error', () => {
+            console.error('my:custom:error FIRED')
+        }) 
+    
+    
     }
 }

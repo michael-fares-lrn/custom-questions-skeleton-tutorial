@@ -1,31 +1,259 @@
 <div class="lrn-qe-edit-form">
     <span data-lrn-qe-label="stimulus"></span>
     <span data-lrn-qe-input="stimulus" class="lrn-qe-ckeditor-lg"></span>
-    
-    <span data-lrn-qe-label="choices"></span>
-    <div data-lrn-qe-loop="choices[*]">
-        <span data-lrn-qe-input="choices[*].label"></span>
+  </div>
+  
+  <!-- ----------------------------------------------------------------------- -->
+  <!--                          Set correct response                           -->
+  <!-- ----------------------------------------------------------------------- -->
+  
+  <div
+    class="lrn-qe-form-label lrn-qe-h4 lrn-qe-section-header"
+    data-lrn-qe-section="layout.heading"
+  >
+    <h5 class="lrn-qe-heading">
+      <label
+        class="lrn-qe-label lrn-qe-form-label-name lrn-qe-text-bold"
+        data-lrn-qe-i18n-label="heading.layout"
+        value="Set correct answer(s)"
+      ></label>
+    </h5>
+  </div>
+  
+  <span
+    data-lrn-qe-label="Set correct answer(s)"
+    data-lrn-qe-heading="4"
+    data-lrn-qe-section="validation.heading"
+    class="lrn-qe-h4 lrn-qe-section-header lrn-qe-text-bold lrn-qe-border-none"
+  ></span>
+  <div
+    class="lrn-qe-tabs"
+    data-lrn-qe-tabs
+    data-lrn-qe-section="validation.content"
+  >
+    <ul class="lrn-qe-tab-header">
+      <li class="lrn-qe-tab-trigger" data-lrn-qe-tab-trigger>
+        <span data-lrn-qe-label="valid_response"></span>
+      </li>
+      <li
+        data-lrn-qe-loop="alt_responses[*]"
+        class="lrn-qe-tab-trigger"
+        data-lrn-qe-tab-trigger
+        data-lrn-qe-section="alt_responses"
+      >
+        <span data-lrn-qe-label="alt_responses[*]"></span>
+      </li>
+      <li>
+        <span
+          data-lrn-qe-action-add="alt_responses"
+          class="lrn-qe-tabs-add"
+          data-lrn-qe-section="alt_responses"
+        ></span>
+      </li>
+    </ul>
+    <!-- First set correct response tab -->
+    <div class="lrn-qe-tab-item" data-lrn-qe-tab-item>
+      <div class="lrn-qe-tab-sub-content">
+        <span
+          data-lrn-qe-input="score"
+          class="lrn-qe-inline-block lrn-qe-text-left lrn-qe-form-control-xs lrn-qe-margin-left-sm"
+        ></span>
+        <span
+          data-lrn-qe-label="score"
+          class="lrn-qe-inline-block lrn-qe-margin-left-sm"
+        ></span>
+      </div>
+      <span data-lrn-qe-input="valid_response"></span>
     </div>
-
-    <span data-lrn-qe-label="valid_response"></span>
-    <span data-lrn-qe-input="valid_response"></span>
-    <span data-lrn-qe-label="score"></span>
-    <span data-lrn-qe-input="score"></span> 
-
-    <h4 class="lrn-qe-heading" data-lrn-qe-adv-toggle>
-        <button type="button" class="lrn-qe-form-label lrn-qe-margin-top-none lrn-qe-more-options" data-lrn-qe-section="more_options.heading">
-            <span class="lrn-qe-i-arrow lrn-qe-inline-block" data-lrn-qe-section="more_options.toggle"></span>
-            <span class="lrn-qe-inline-block lrn-qe-text-bold">
-                <label class="lrn-qe-label lrn-qe-form-label-name" data-lrn-qe-i18n-label="heading.moreOptions" value="More options"></label>
-            </span>
-        </button>
-    </h4>
-    <div data-lrn-qe-adv-content data-lrn-qe-section="more_options.content">
-        <div class="lrn-qe-row-flex" data-lrn-qe-layout-wrapper>
-            <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
-                <span data-lrn-qe-input="instant_feedback" class="lrn-qe-inline-block"></span>
-                <span data-lrn-qe-label="instant_feedback" class="lrn-qe-inline-block"></span>
-            </div>
-        </div>
+  
+    <!-- Placeholder for alternate responses if the author uses them -->
+    <div
+      data-lrn-qe-loop="alt_responses[*]"
+      class="lrn-qe-tab-item"
+      data-lrn-qe-tab-item
+      data-lrn-qe-layout-listeners="add,remove"
+      data-lrn-qe-section="alt_responses"
+    >
+      <div class="lrn-qe-tab-sub-content">
+        <span
+          data-lrn-qe-action-remove="alt_responses[*]"
+          class="lrn-qe-tab-remove"
+        ></span>
+      </div>
+      <span data-lrn-qe-input="alt_responses[*]"></span>
     </div>
-</div>
+  </div>
+  
+  <!-- ----------------------------------------------------------------------- -->
+  <!--                              More options                               -->
+  <!-- ----------------------------------------------------------------------- -->
+  <h4 class="lrn-qe-heading" data-lrn-qe-adv-toggle>
+    <button
+      type="button"
+      class="lrn-qe-form-label lrn-qe-margin-top-none lrn-qe-more-options"
+      data-lrn-qe-section="more_options.heading"
+    >
+      <span
+        class="lrn-qe-i-arrow lrn-qe-inline-block"
+        data-lrn-qe-section="more_options.toggle"
+      ></span>
+      <span class="lrn-qe-inline-block lrn-qe-text-bold">
+        <label
+          class="lrn-qe-label lrn-qe-form-label-name"
+          data-lrn-qe-i18n-label="heading.moreOptions"
+          value="More options"
+        ></label>
+      </span>
+    </button>
+  </h4>
+  
+  <div data-lrn-qe-adv-content data-lrn-qe-section="more_options.content">
+    <div
+      class="lrn-qe-form-label lrn-qe-h4 lrn-qe-section-header"
+      data-lrn-qe-section="layout.heading"
+    >
+      <h5 class="lrn-qe-heading">
+        <label
+          class="lrn-qe-label lrn-qe-form-label-name lrn-qe-text-bold"
+          data-lrn-qe-i18n-label="heading.layout"
+          value="Grid Customisation"
+        ></label>
+      </h5>
+    </div>
+  
+    <!-- ------------------------- Grid customisation -------------------------- -->
+    <div class="lrn-qe-row-flex" data-lrn-qe-layout-wrapper>
+      <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+        <span data-lrn-qe-label="grid_customisation"></span>
+        <span data-lrn-qe-input="grid_customisation"></span>
+      </div>
+    </div>
+  
+    <div class="lrn-qe-row-flex">
+      <div class="lrn-qe-col-sm-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+        <span data-lrn-qe-input="grid_customisation_grid"></span>
+      </div>
+      <div class="lrn-qe-col-sm-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+        <span data-lrn-qe-label="example_shape"></span>
+        <span data-lrn-qe-input="example_shape"></span>
+      </div>
+  
+      <div class="lrn-qe-col-sm-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+        <span data-lrn-qe-label="mirror_line"></span>
+        <span data-lrn-qe-input="mirror_line"></span>
+      </div>
+  
+      <div class="lrn-qe-col-sm-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+        <span data-lrn-qe-label="disabled_hotspots"></span>
+        <span data-lrn-qe-input="disabled_hotspots"></span>
+      </div>
+    </div>
+  
+    <!-- Divider -->
+    <div
+      class="lrn-qe-form-label lrn-qe-h4 lrn-qe-section-header"
+      data-lrn-qe-section="layout.heading"
+    >
+      <!-- --------------------------- Grid Properties --------------------------- -->
+      <!-- Grid Properties Heading -->
+      <h5 class="lrn-qe-heading">
+        <label
+          class="lrn-qe-label lrn-qe-form-label-name lrn-qe-text-bold"
+          data-lrn-qe-i18n-label="heading.layout"
+          value="Grid Properties"
+        ></label>
+      </h5>
+    </div>
+  
+    <div class="lrn-qe-row-flex" data-lrn-qe-layout-wrapper>
+      <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+        <span data-lrn-qe-label="grid_type"></span>
+        <span data-lrn-qe-input="grid_type"></span>
+      </div>
+      <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+        <span data-lrn-qe-label="grid_size"></span>
+        <span data-lrn-qe-input="grid_size"></span>
+      </div>
+    </div>
+  
+    <!-- Divider -->
+    <div
+      class="lrn-qe-form-label lrn-qe-h4 lrn-qe-section-header"
+      data-lrn-qe-section="layout.heading"
+    >
+      <h5 class="lrn-qe-heading">
+        <label
+          class="lrn-qe-label lrn-qe-form-label-name lrn-qe-text-bold"
+          data-lrn-qe-i18n-label="heading.layout"
+          value="Other settings"
+        ></label>
+      </h5>
+    </div>
+    <!-- Display reset button -->
+    <div class="lrn-qe-row-flex" data-lrn-qe-layout-wrapper>
+      <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+        <span
+          data-lrn-qe-input="display_reset"
+          class="lrn-qe-inline-block"
+        ></span>
+        <span
+          data-lrn-qe-label="display_reset"
+          class="lrn-qe-inline-block lrn-qe-margin-left-xs"
+        ></span>
+      </div>
+  
+      <!-- Reset button position -->
+      <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+        <span data-lrn-qe-label="reset_position"></span>
+        <span data-lrn-qe-input="reset_position"></span>
+      </div>
+    </div>
+  
+    <div class="lrn-qe-row-flex" data-lrn-qe-layout-wrapper>
+      <!-- Instant feedback button -->
+      <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+        <span
+          data-lrn-qe-input="instant_feedback"
+          class="lrn-qe-inline-block"
+        ></span>
+        <span
+          data-lrn-qe-label="instant_feedback"
+          class="lrn-qe-inline-block lrn-qe-margin-left-xs"
+        ></span>
+      </div>
+  
+      <!-- --------------------------- Contains maths ---------------------------- -->
+      <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6">
+        <span data-lrn-qe-input="is_math" class="lrn-qe-inline-block"></span>
+        <span
+          data-lrn-qe-label="is_math"
+          class="lrn-qe-inline-block lrn-qe-margin-left-xs"
+        ></span>
+      </div>
+    </div>
+  
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                                 Extras                                  -->
+    <!-- ----------------------------------------------------------------------- -->
+    <div
+      class="lrn-qe-form-label lrn-qe-h4 lrn-qe-section-header"
+      data-lrn-qe-section="layout.heading"
+    >
+      <h5 class="lrn-qe-heading">
+        <label
+          class="lrn-qe-label lrn-qe-form-label-name lrn-qe-text-bold"
+          data-lrn-qe-i18n-label="heading.layout"
+          value="Extras"
+        ></label>
+      </h5>
+    </div>
+    <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+      <span data-lrn-qe-label="metadata.rubric_reference"></span>
+      <span data-lrn-qe-input="metadata.rubric_reference"></span>
+    </div>
+    <div class="lrn-qe-col-xs-12 lrn-qe-col-sm-6" data-lrn-qe-layout-wrapper>
+      <span data-lrn-qe-label="instructor_stimulus"></span>
+      <span data-lrn-qe-input="instructor_stimulus"></span>
+    </div>
+  </div>
+  

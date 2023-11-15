@@ -24,9 +24,9 @@
     ],
     "score": 1,
     "js": {
-        "question": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.js",
-        "scorer": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/scorer.js"
+        "question": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/question.js",
+        "scorer": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/scorer.js"
     },
-    "css": "https://michael-fares-lrn.github.io/file-server-test/mcq_dist/question.css",
+    "css": "https://michael-fares-lrn.github.io/file-server-test/test_custom_q_dist/question.css",
     "instant_feedback": true
 }
