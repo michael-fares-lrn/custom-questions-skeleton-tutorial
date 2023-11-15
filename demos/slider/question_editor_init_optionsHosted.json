@@ -11,10 +11,10 @@
             "valid_response": 60,
             "score": 1,
             "js": {
-              "question": "/dist/question.js",
-              "scorer": "/dist/scorer.js"
+              "question": "https://michael-fares-lrn.github.io/file-server-test/slider_dist/question.js",
+              "scorer": "https://michael-fares-lrn.github.io/file-server-test/slider_dist/scorer.js"
             },
-            "css": "/dist/question.css",
+            "css": "https://michael-fares-lrn.github.io/file-server-test/slider_dist/question.css",
             "instant_feedback": true
           }
         }
@@ -25,12 +25,12 @@
         "custom_type": "custom_question_skeleton",
         "type": "custom",
         "name": "Custom Question - Skeleton",
-        "editor_layout": "/dist/authoring_custom_layout.html",
+        "editor_layout": "https://michael-fares-lrn.github.io/file-server-test/slider_dist/authoring_custom_layout.html",
         "js": {
-          "question": "/dist/question.js",
-          "scorer": "/dist/scorer.js"
+          "question": "https://michael-fares-lrn.github.io/file-server-test/slider_dist/question.js",
+          "scorer": "https://michael-fares-lrn.github.io/file-server-test/slider_dist/scorer.js"
         },
-        "css": "/dist/question.css",
+        "css": "https://michael-fares-lrn.github.io/file-server-test/slider_dist/question.css",
         "version": "v1.0.0",
         "editor_schema": {
           "hidden_question": false,
