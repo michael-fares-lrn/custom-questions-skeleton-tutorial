@@ -1,0 +1,33 @@
+/*********************************************************
+Write any CSS styling rules for your custom question HERE. 
+There is no need to create your own file called question.css 
+Based on the CSS you write here, the question.css file will be generated 
+automatically for you by webpack when you build the production version of your question by running yarn-prod. 
+************************************************************/
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* change the font size */
+.axis text,
+.slider text {
+    font-size: 18px;
+    stroke: black;
+}
+path.handle {
+    cursor: pointer;
+    stroke: black;
+}
+p#value {
+    background-color: royalblue;
+    color: white;
+    padding: 2rem;
+    font-size: 25px;
+    
+}
+line.track, line.track-fill, line.track-inset {
+    stroke-width: 40;
+    stroke-linecap: square;
+}
