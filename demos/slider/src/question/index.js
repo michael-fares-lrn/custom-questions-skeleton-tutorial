@@ -208,10 +208,11 @@ export default class Question {
             response = val;
             events.trigger('changed', response)
             console.log(facade.getResponse())
+            facade.resetValidationUI()
         });
 
         
-        facade.resetValidationUI()
+        
      
         events.on('validate', options => {
             // OPTIONAL Step 1: 
