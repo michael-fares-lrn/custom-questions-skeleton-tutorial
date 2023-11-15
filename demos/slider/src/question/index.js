@@ -80,7 +80,7 @@ export default class Question {
 
             d3.select(this.sliderHook)
                 .append('svg')
-                .attr('width', 700)
+                .attr('width', 800)
                 .attr('height', 200)
                 .append('g')
                 .attr('transform', 'translate(80,80)')
