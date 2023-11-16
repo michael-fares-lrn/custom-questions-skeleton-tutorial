@@ -93,17 +93,16 @@ export default class Question {
                 .attr('transform', 'translate(-65,-120) scale(1.2)')
                 .attr('fill', 'black')
 
-            d3.select('line.track-fill')
+            d3.selectAll('line.track-fill')
                 .attr('transform','translate(-25,0)')
-            d3.select('line.track-inset')
-                .attr('transform','translate(-25,0)')
-                .attr('x2', '600')
-            d3.select('line.track')
+            d3.selectAll('line.track-inset')
                 .attr('transform','translate(-25,0)')
                 .attr('x2', '600')
-
+            d3.selectAll('line.track')
+                .attr('transform','translate(-25,0)')
+                .attr('x2', '600')
             // axis
-            d3.select('g.axis')
+            d3.selectAll('g.axis')
                 .attr('transform', 'translate(-5,7)')
            
         });
