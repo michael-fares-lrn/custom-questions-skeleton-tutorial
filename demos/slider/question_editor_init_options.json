@@ -1,10 +1,16 @@
 {
+  "question_type_groups": [
+    {
+        "name": "My Custom Questions",
+        "reference": "my_custom_questions"
+    }
+],
     "question_type_templates": {
       "custom_question_skeleton": [
         {
           "name": "Custom Question - Slider Example",
           "description": "An example of a custom slider question in Learnosity",
-          "group_reference": "other",
+          "group_reference": "my_custom_questions",
           "defaults": {
             "type": "custom",
             "stimulus": "<b>Drag the slider to show the number 60</b>",
