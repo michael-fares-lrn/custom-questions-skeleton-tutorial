@@ -10,12 +10,16 @@
           "editor_schema": {
              "hidden_question": false,
              "properties": {
-                "my_metadata": {
-                   "name": "Media asset metadata:",
-                   "description": "Example description",
-                   "type": "string",
-                   "required": true,
-                   "default": "My metadata example value"
+                "validation": {
+                   "type": "object",
+                   "attributes": {
+                      "unscored": {
+                         "name": "Unscored practice",
+                         "description": "Enable unscored practice for the custom question",
+                         "required": false,
+                         "defaut": false
+                      }
+                   }
                 }
              }
           }

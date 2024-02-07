@@ -39,7 +39,19 @@
                 "type": "boolean",
                 "required": false,
                 "default": false
-              }
+              },
+              "validation": {
+                "type": "object",
+                "attributes": {
+                   "unscored": {
+                      "type": "boolean",
+                      "name": "Unscored practice",
+                      "description": "Enable unscored practice for the custom question",
+                      "required": false,
+                      "defaut": false
+                   }
+                }
+             }
           }
         }
       }

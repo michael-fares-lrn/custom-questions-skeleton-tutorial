@@ -87,10 +87,10 @@ function signAuthoringRequest($request)
                     'init_options' => [
                         'ui' => [
                             'search_field' => true,
-                            'layout' => [
-                                'global_template' => 'edit_preview',
-                                'mode' => 'advanced'
-                            ]
+                            // 'layout' => [
+                            //     'global_template' => 'edit_preview',
+                            //     'mode' => 'advanced'
+                            // ]
                         ]
                     ]
                 ]

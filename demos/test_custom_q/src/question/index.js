@@ -12,7 +12,10 @@ export default class Question {
             this.registerPublicMethods();
             this.handleEvents();
 
+            console.log("init.state is ", this.init.state)
+
             if (init.state === "review") {
+                console.log("THE STATE IS REVIEW")
                 init.getFacade().disable();
             }
 
