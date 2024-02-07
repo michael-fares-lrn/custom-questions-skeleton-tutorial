@@ -1,8 +1,8 @@
 {
     "type": "custom",
-    "stimulus": "Which city is located in the US state of Texas?",
+    "stimulus": "Which city is located in the US state of Colorado?",
     "valid_response": {
-        "value": "1"
+        "value": "0"
     },
     "choices": [
         {
@@ -29,5 +29,5 @@
     },
     "css": "/dist/question.css",
     "instant_feedback": true,
-    "custom_type": "custom-multiple-choice-type-1"
+    "custom_type": "custom-multiple-choice-type-2"
 }

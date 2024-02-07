@@ -6,9 +6,9 @@
         }
     ],
     "question_type_templates": {
-        "custom-multiple-choice-type-1": [
+        "custom-multiple-choice-type-2": [
             {
-                "name": "Custom MCQ - TYPE 1",
+                "name": "Custom MCQ - TYPE 2",
                 "description": "Demonstrates an example of setting up authoring for a custom question type",
                 "group_reference": "company_x_custom_questions",
                 "defaults": {
@@ -48,9 +48,9 @@
     },
     "custom_question_types": [
         {
-            "custom_type": "custom-multiple-choice-type-1",
+            "custom_type": "custom-multiple-choice-type-2",
             "type": "custom",
-            "name": "Custom MCQ - TYPE 1",
+            "name": "Custom MCQ - TYPE 2",
             "editor_layout": "/dist/authoring_custom_layout.html",
             "js": {
                 "question": "/dist/question.js",

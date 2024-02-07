@@ -137,7 +137,6 @@ export default class Question {
         // we are going to need all of these properties eventually, so let's desctructure them now
         const { events, el, init } = this;
         const { question } = init;
-
      
         // first we will access the runtime facade of our custom question
         // this is important, because we are going to call the getResponse() method on this facade

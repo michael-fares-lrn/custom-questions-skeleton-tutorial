@@ -1,0 +1,39 @@
+/***********************************************************
+In this file we will write custom CSS we wish to apply to our custom question
+*************************************************************/
+
+// determine how our UI should look in review state when disabled() method is called on our question
+// we do this by addeing a class of 'disabled' to our question response area, and to the choice labels
+// here, we will change the style of the cursor only when the question is disabled
+// we will use javascript in src/question/index.js to apply the 'disabled' attribute to our radio button inputs
+
+.lrn_response_input label.yellow {
+    border: 10px solid yellow;
+}
+.disabled {
+    cursor: not-allowed;
+}
+// we will add some basic styling to improve the spacing between out radio buttons and labels
+.option-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+// more basic styling to increase the size of the radio buttons 
+.option-container input {
+    transform: scale(1.5);
+}
+// apply a simple blue underline to the option that is picked
+.option-container input:checked+label {
+    box-shadow: 0 5px 0 royalblue;
+}
+// include a simple transition effect for the option that is picked
+// and include a pointer cursor
+.option-container input, .option-container label {
+    cursor: pointer;
+    transition: ease all 0.2s;
+}
