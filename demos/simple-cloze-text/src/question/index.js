@@ -55,7 +55,7 @@ export default class Question {
             // split the question.text into an array on space as a delimiter
             // map over it, and insert the words or an input for a {{response}} (which will match the RESPONSE_REGX)
             console.log("question", question)
-            const textArray = question.text.split(" ");
+            const textArray = question.template.split(" ");
             let count_blanks = 0;
             textArray.forEach(word => {
                 const isBlank = word.match(RESPONSE_REGX)

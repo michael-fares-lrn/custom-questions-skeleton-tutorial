@@ -26,17 +26,9 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
     <style>
         <?php echo(file_get_contents('../sharedStyle.css')); ?>
         .response-placeholder {
-            border: 1px dashed red;
-            color: white;
-            background-color: royalblue;
+            background-color: #eee;
             margin: 0 0.25em;
-        }
-        .response-placeholder::before {
-            content: url("/letter-r.svg")
-        }
-        /* Hide the custom button from all others but this one */
-        div.lrn-qe-ckeditor-lg:not(.custom-insert-response) .cke_button__custombutton1 {
-            display: none;
+            content: url("https://questioneditor.learnosity.com/v3.115.2/vendor/ckeditor/plugins/lrn_underscore/icons/underscore.png")
         }
         .custom-insert-response {
             line-height: 2.5
@@ -67,11 +59,14 @@ $signedRequest = signAuthoringRequest(json_decode($request, true));
         customButtons: [{
             name: 'custombutton1',
             label: 'Custom Insert Response',
-            icon: '/letter-r.svg',
+            icon: 'https://questioneditor.learnosity.com/v3.115.2/vendor/ckeditor/plugins/lrn_underscore/icons/underscore.png',
             func: function customInsertResponse(attribute, callback) {
                 return callback(
             `<span class="response-placeholder">{{response}}</span>&nbsp`)
-            }
+            },
+            attributes: [
+                "template"
+            ]
         }],
         errorListener(e) {
             console.error(e);

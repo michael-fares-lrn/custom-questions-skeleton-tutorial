@@ -16,7 +16,7 @@
           "stimulus": "Fill in the blanks",
           "valid_response": [null, null],
           "score": 1,
-          "text": "Veritatis ab ad facilis atque <span class=\"response-placeholder\">{{response}}</span>&nbsp; officia nulla tempore! Nesciunt quia tenetur officiis, facilis inventore error quidem porro architecto <span class=\"response-placeholder\">{{response}}</span>&nbsp;, nulla perferendis.",
+          "template": "Veritatis ab ad facilis atque <span class=\"response-placeholder\">{{response}}</span>&nbsp; officia nulla tempore! Nesciunt quia tenetur officiis, facilis inventore error quidem porro architecto <span class=\"response-placeholder\">{{response}}</span>&nbsp;, nulla perferendis.",
           "js": {
             "question": "/dist/question.js",
             "scorer": "/dist/scorer.js"
@@ -49,7 +49,7 @@
             "required": false,
             "default": false
           },
-          "text": {
+          "template": {
             "name": "Template text for the cloze question",
             "description": "The template text for the cloze question",
             "type": "editor",
@@ -60,7 +60,7 @@
             "type" : "question",
             "name" : "Set correct answer(s)",
             "description" : "Correct answer for the question",
-            "white_list" : ["text"]
+            "white_list" : ["template"]
           }
         }
       }
