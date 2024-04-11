@@ -136,6 +136,7 @@ export default class Question {
 
         };
         facade.resetValidationUI = () => {
+            this.suggestedAnswersList.reset();
             responseArea.classList.remove(CLASS_NAMES.CORRECT)
             responseArea.classList.remove(CLASS_NAMES.INCORRECT)
             responseInputs.forEach(input => {
