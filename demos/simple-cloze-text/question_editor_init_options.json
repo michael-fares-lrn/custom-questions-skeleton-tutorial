@@ -6,9 +6,9 @@
     }
   ],
   "question_type_templates": {
-    "custom_question_skeleton": [
+    "handwriting_question": [
       {
-        "name": "Custom Cloze Text Question",
+        "name": "Handwriting",
         "description": "Demonstrates an example of setting up authoring for a custom question type",
         "group_reference": "company_x_custom_questions",
         "defaults" : {
@@ -29,9 +29,9 @@
   },
   "custom_question_types": [
     {
-      "custom_type": "custom_question_skeleton",
+      "custom_type": "handwriting_question",
       "type": "custom",
-      "name": "Custom Question - Skeleton",
+      "name": "Handwriting",
       "editor_layout": "/dist/authoring_custom_layout.html",
       "js": {
         "question": "/dist/question.js",
